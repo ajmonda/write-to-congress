@@ -13,11 +13,7 @@ const stateForm = document.querySelector('#state')
 function getAddress(e) {
   e.preventDefault()
 
-  const street = streetForm.value
-  const city = streetForm.value
-  const state = stateForm.value
-
-  let address = `${street}%20${city}%20${state}`
+  const address = `${streetForm.value}%20${streetForm.value}%20${stateForm.value}`
 
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
@@ -25,7 +21,6 @@ function getAddress(e) {
   console.log(address)
   console.log(url)
 }
-
 
 async function testAPI(url) {
   try {
