@@ -4,7 +4,9 @@
 
 ## Project Description
 
-The purpose of this project is to simplify and make more accessible the process of civic action. The portal will provide general information about a pressing issue, and asks the user to input their address. The app then pulls the office information of the relavent elected offical that represents the inputted address, and generates a letter within a text box with options to edit, copy to the clipboard, or email directly. The desgn of the web app will be clean and direct, in order to reinforce the simplicity of the task. Due to the project's timeline, I will select only one issue to focus on in the landing page (it assumes the user has accessed the app with a general awareness of its purpose). Fully realized, the web app would provide multiple letters customized to pertinant topics or issues, and offer the user an interactve selection of representatives to contact.
+The purpose of this project is to simplify and make more accessible the process of civic action. The portal will provide general information about a pressing issue, and asks the user to input their address. The app then pulls the office information of the relavent elected offical that represents the inputted address, and generates a letter within a text box with options to edit, copy to the clipboard, or email directly. Below the returned content, there will be a footer with links to related organizations with a suggestion to donate.
+
+The desgn of the web app will be clean and direct, in order to reinforce the simplicity of the task. Due to the project's timeline, I will select only one issue to focus on in the landing page (it assumes the user has accessed the app with a general awareness of its purpose). Fully realized, the web app would provide multiple letters customized to pertinant topics or issues, and offer the user an interactve selection of representatives to contact.
 
 ## API and Data Sample
 
