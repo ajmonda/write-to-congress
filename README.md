@@ -62,12 +62,12 @@ https://developers.google.com/civic-information
 
 #### PostMVP  
 
-* Leter renders in an editable text box.
+* Letter renders in an editable text box.
 * Button that automatically copies text in generated letter/text box.
 * Customized letter that includes user's name.
-* JS transition between classes (info and input/returned letter and address)
-* "For more information" and resources
-* More than one issue for user to select, and
+* JS transition between classes.
+* "For more information" and resources.
+* More than one issue for user to select.
 * User input generates results with options for every level of governance relavent to the issue.
 * Randomized nonprofit links.
 
