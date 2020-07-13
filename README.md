@@ -51,7 +51,7 @@ https://developers.google.com/civic-information
 
 ## Wireframes
 
-![wireframe](/assets/images.wireframes.png)
+![wireframe](/assets/images/wireframes.png)
 
 #### MVP 
 
@@ -84,7 +84,7 @@ https://developers.google.com/civic-information
 
 ## Priority Matrix
 
-![priority matrix](/assets/images.priority_matrix.png)
+![priority matrix](/assets/images/priority_matrix.png)
 
 ## Timeframes
 
