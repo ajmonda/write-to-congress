@@ -1,42 +1,35 @@
 
 
-
-
 const addressForm = document.querySelector('form')
-addressForm.addEventListener('submit', logAddress)
 
+addressForm.addEventListener('submit', getAddress)
+addressForm.addEventListener('submit', testAPI)
 
-
-function logAddress(e) {
-
-  e.preventDefault()
-  
 const streetForm = document.querySelector('#street')
-const street = streetForm.value
-
 const cityForm = document.querySelector('#city')
-const city = cityForm.value
-
 const stateForm = document.querySelector('#state')
-const state = stateForm.value
-
-const address = `${street}%20${city}%20${state}`
-  
-  console.log(address)
-
-}
 
 
-async function testAPI(address) {
+function getAddress(e) {
+  e.preventDefault()
+
+  const street = streetForm.value
+  const city = streetForm.value
+  const state = stateForm.value
+
+  let address = `${street}%20${city}%20${state}`
 
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
 
+  console.log(address)
+  console.log(url)
+}
+
+
+async function testAPI(url) {
   try {
     const response = await axios.get(url)
-    console.log(response.data)
-
-    // each government office has a specific index attached to the results. for example, the office of governor is always asigned to index 4:
 
     const govtName = response.data.officials[4].name
     const govtTitle = response.data.offices[4].name
@@ -66,6 +59,3 @@ async function testAPI(address) {
     console.log(`if successful, response displayed`)
   }
 }
-
-
-// testAPI(address)
