@@ -64,6 +64,7 @@ https://developers.google.com/civic-information
 
 * Leter renders in an editable text box.
 * Button that automatically copies text in generated letter/text box.
+* Customized letter that includes user's name.
 * JS transition between classes (info and input/returned letter and address)
 * "For more information" and resources
 * More than one issue for user to select, and
