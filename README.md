@@ -57,7 +57,7 @@ https://developers.google.com/civic-information
 
 #### MVP 
 
-* Full clarity on navigating the Civic Information IPA's arrays.
+* Full clarity on navigating the Civic Information IAP's arrays.
 * Use of HTML input forms and using JavaScript to store and implement user's address.
 * Render desired content on DOM after user's input.
 
