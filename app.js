@@ -76,23 +76,31 @@ async function getAPI(url) {
 
 
 
-      const topics = document.createElement('div')
-      topics.id = 'topics'
+      const topicsPage = document.createElement('div')
+      topicsPage.id = 'topics-page'
+      const letterPage = document.createElement('div')
+      letterPage.id = 'letter-page'
 
       const main = document.querySelector('main')
       
 
-      topics.append(h2)
-      topics.append(h3)
-      topics.append(button)
-      topics.append(a)
+      topicsPage.append(h2)
+      topicsPage.append(h3)
+      topicsPage.append(button)
+      topicsPage.append(a)
 
-      main.append(topics)
+      main.append(topicsPage)
 
 
       writeLetter = (e) => {
         e.preventDefault()
-        main.removeChild(topics)
+        topicsPage.remove()
+
+        const letter = document.createElement('input')
+        letter.value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+
+        main.append(letter)
+
         document.querySelector('h1').innerText = 'That\'s it. Edit, sign, and copy your call to action below.'
       }
 
