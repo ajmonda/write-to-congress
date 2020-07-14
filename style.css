@@ -1,0 +1,44 @@
+
+main {
+  margin: 15vw 20vw;
+  text-align: center;
+  kerning: 5;
+  line-height: 1.5;
+  font-style: italic;
+  font-family: sans-serif;
+  }
+
+ h1 {
+  margin-bottom: 30px;
+}
+
+a:visited {
+  color: black;
+}
+
+form {
+  text-align: center;
+}
+
+input {
+  font-size: 30px;
+  width: 70%;
+  margin: 10px auto;
+  display: block;
+  justify-content: center;
+  padding: 10px 5px;
+
+}
+
+button {
+  margin: 30px auto;
+  font-size: 30px;
+  width: 73%;
+  display: block;
+  justify-content: center;
+  padding: 10px 5px;
+  
+  
+}
+
+
