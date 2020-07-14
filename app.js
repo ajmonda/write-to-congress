@@ -31,7 +31,7 @@ async function writeLetter(url) {
     const form = document.querySelector('form')
     form.remove()
 
-    const topicsPage = document.getElementById('topics-page')
+    const topicsPage = document.getElementById('topic-page')
     document.querySelector('h1').innerText = "These topics need your voice."
 
     // // div 1
@@ -42,7 +42,7 @@ async function writeLetter(url) {
     const breatheBlurb = document.createElement('h3')
     breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing.'
     const breatheButton = document.createElement('button')
-    breatheButton.id = 'breathe-button'
+    
     breatheButton.innerText = 'Select'
     const breatheMore = document.createElement('a')
     breatheMore.href = 'https://breatheact.org/'
@@ -57,11 +57,11 @@ async function writeLetter(url) {
     const extendDiv = document.getElementById('extend')
 
     const extendTitle = document.createElement('h2')
-    extendTitle.innerText = 'Extend COVID-19 Emergency Unemployment'
+    extendTitle.innerText = 'COVID-19 Unemployment'
     const extendBlurb = document.createElement('h3')
-    extendBlurb.innerText = 'Support the petition to extend the weekly additional unemployment assistance until at least December 31, 2020.'
+    extendBlurb.innerText = 'Support the petition to extend the weekly additional $600 unemployment assistance until at least December 31, 2020.'
     const extendButton = document.createElement('button')
-    extendButton.id = 'extend-button'
+    // extendButton.id = 'extend-button'
     extendButton.innerText = 'Select'
     const extendMore = document.createElement('a')
     extendMore.href = 'https://sign.moveon.org/petitions/extend-unemployment-600-per-week-additional-assistance-through-at-least-dec-31-2020/'
@@ -74,27 +74,30 @@ async function writeLetter(url) {
 
 
     // // div 3
-    const numThreeDiv = document.getElementById('number-three')
+    // const numThreeDiv = document.getElementById('number-three')
 
-    const numThreeTitle = document.createElement('h2')
-    numThreeTitle.innerText = 'Number Three'
-    const numThreeBlurb = document.createElement('h3')
-    numThreeBlurb.innerText = 'Information will go here for the user to read'
-    const numThreeButton = document.createElement('button')
-    numThreeButton.id = 'num2-button'
-    numThreeButton.innerText = 'Select'
-    const numThreeMore = document.createElement('a')
-    numThreeMore.href = 'https://breatheact.org/'
-    numThreeMore.innerText = 'Learn More'
+    // const numThreeTitle = document.createElement('h2')
+    // numThreeTitle.innerText = 'Number Three'
+    // const numThreeBlurb = document.createElement('h3')
+    // numThreeBlurb.innerText = 'Information will go here for the user to read'
+    // const numThreeButton = document.createElement('button')
+    // numThreeButton.id = 'numThree-button'
+    // numThreeButton.innerText = 'Select'
+    // const numThreeMore = document.createElement('a')
+    // numThreeMore.href = 'https://breatheact.org/'
+    // numThreeMore.innerText = 'Learn More'
 
-    numThreeDiv.appendChild(numThreeTitle)
-    numThreeDiv.appendChild(numThreeBlurb)
-    numThreeDiv.appendChild(numThreeButton)
-    numThreeDiv.appendChild(numThreeMore)
+    // numThreeDiv.appendChild(numThreeTitle)
+    // numThreeDiv.appendChild(numThreeBlurb)
+    // numThreeDiv.appendChild(numThreeButton)
+    // numThreeDiv.appendChild(numThreeMore)
+
+    breatheButton.classList.add('topic-button')
 
     breatheButton.addEventListener('click', (e) => {
       compose(e)
     })
+
     extendButton.addEventListener('click', (e) => {
       compose(e)
     })
@@ -136,5 +139,5 @@ async function writeLetter(url) {
   } finally {
     console.log(`if successful, response displayed`)
   }
-  
+
 }
