@@ -31,7 +31,6 @@ async function writeLetter(url) {
     const form = document.querySelector('form')
     form.remove()
 
-
     const topicsPage = document.getElementById('topics-page')
     document.querySelector('h1').innerText = "These topics need your voice."
 
@@ -54,8 +53,6 @@ async function writeLetter(url) {
     breatheDiv.appendChild(breatheButton)
     breatheDiv.appendChild(breatheMore)
 
-
-
     // // div 2
     const extendDiv = document.getElementById('extend')
 
@@ -76,8 +73,6 @@ async function writeLetter(url) {
     extendDiv.appendChild(extendMore)
 
 
-
-
     // // div 3
     const numThreeDiv = document.getElementById('number-three')
 
@@ -96,10 +91,6 @@ async function writeLetter(url) {
     numThreeDiv.appendChild(numThreeBlurb)
     numThreeDiv.appendChild(numThreeButton)
     numThreeDiv.appendChild(numThreeMore)
-
-
-    const main = document.querySelector('main')
-
 
     breatheButton.addEventListener('click', (e) => {
       compose(e)
@@ -134,33 +125,16 @@ async function writeLetter(url) {
       const h4 = document.createElement('h4')
       h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>'
 
-      // const ul = document.createElement('ul')
-
-      // const org1 = document.createElement('li')
-      // org1.innerHTML = '<a href="http://wwww.theokraproject">The Okra Project</a>'
-      // ul.append(org1)
-
-      // const org2 = document.createElement('li')
-      // org2.innerHTML = '<a href="https://www.blackandpink.org/">Black and Pink</a>'
-      // ul.append(org2)
-
-      // const org3 = document.createElement('li')
-      // org3.innerHTML = '<a href="https://www.glitsinc.org/">G.L.I.T.S.</a>'
-      // ul.append(org3)
-
-      // const org4 = document.createElement('li')
-      // org4.innerHTML = '<a href="https://www.forbreonna.com/">ForBreonna.com</a>'
-      // ul.append(org4)
-
       finalPage.appendChild(letter)
       finalPage.appendChild(copyButton)
       finalPage.appendChild(h4)
-      // finalPage.appendChild(ul)
 
     }
+
   } catch (err) {
     console.log(`error: ${err}`)
   } finally {
     console.log(`if successful, response displayed`)
   }
+  
 }
