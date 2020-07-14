@@ -1,15 +1,17 @@
 
-
 const addressForm = document.querySelector('form')
+
 
 addressForm.addEventListener('submit', async (e) => {
   const url = getAddress(e)
-  await getAPI(url)
+  await writeLetter(url)
 })
+
 
 const streetForm = document.querySelector('#street')
 const cityForm = document.querySelector('#city')
 const stateForm = document.querySelector('#state')
+
 
 
 function getAddress(e) {
@@ -23,90 +25,130 @@ function getAddress(e) {
   return url
 }
 
-async function getAPI(url) {
+
+
+async function writeLetter(url) {
 
   try {
     const response = await axios.get(url)
     function getGovt() {
 
-      // const form = document.getElementById('form')
-
       const senatorName = response.data.officials[2].name
       const senatorTitle = response.data.offices[2].name
       const senatorAddressObj = response.data.officials[2].address[0]
 
-      // const h1 = document.createElement('h1')
-      // const h2 = document.createElement('h2')
-      // const h3 = document.createElement('h3')
-
-      // h1.append(senatorName)
-      // h2.append(senatorTitle)
-
-      // for (const key in senatorAddressObj) {
-      //   h3.append(`${senatorAddressObj[key]}`)
-      // }
-
-
-      // console.log(h1, h2, h3)
-      // const results = document.createElement('div')
-
-      // results.append(h1)
-      // results.append(h2)
-      // results.append(h3)
-
       const form = document.querySelector('form')
       form.remove()
+
+
+      const topicsPage = document.getElementById('topics-page')
       document.querySelector('h1').innerText = "These topics need your voice."
 
+      // // div 1
+      const breatheDiv = document.getElementById('breathe-div')
 
+      const breatheTitle = document.createElement('h2')
+      breatheTitle.innerText = 'The BREATHE Act'
+      const breatheBlurb = document.createElement('h3')
+      breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing.'
+      const breatheButton = document.createElement('button')
+      breatheButton.id = 'breathe-button'
+      breatheButton.innerText = 'Select'
+      const breatheMore = document.createElement('a')
+      breatheMore.href = 'https://breatheact.org/'
+      breatheMore.innerText = 'Learn More'
+
+      breatheDiv.appendChild(breatheTitle)
+      breatheDiv.appendChild(breatheBlurb)
+      breatheDiv.appendChild(breatheButton)
+      breatheDiv.appendChild(breatheMore)
+
+  
+
+      // // div 2
+      const numTwoDiv = document.getElementById('number-two')
+
+      const numTwoTitle = document.createElement('h2')
+      numTwoTitle.innerText = 'Number Two'
+      const numTwoBlurb = document.createElement('h3')
+      numTwoBlurb.innerText = 'Information will go here for the user to read'
+      const numTwoButton = document.createElement('button')
+      numTwoButton.id = 'num2-button'
+      numTwoButton.innerText = 'Select'
+      const numTwoMore = document.createElement('a')
+      numTwoMore.href = 'https://breatheact.org/'
+      numTwoMore.innerText = 'Learn More'
+
+      numTwoDiv.appendChild(numTwoTitle)
+      numTwoDiv.appendChild(numTwoBlurb)
+      numTwoDiv.appendChild(numTwoButton)
+      numTwoDiv.appendChild(numTwoMore)
 
       
-      const h2 = document.createElement('h2')
-      h2.innerText = 'The BREATHE Act'
-      const h3 = document.createElement('h3')
-      h3.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing.'
-      const button = document.createElement('button')
-      button.innerText = 'Select'
-      const a = document.createElement('a')
-      a.href = 'https://breatheact.org/'
-      a.innerText = 'Learn More'
 
 
+      // // div 3
+      const numThreeDiv = document.getElementById('number-three')
 
+      const numThreeTitle = document.createElement('h2')
+      numThreeTitle.innerText = 'Number Three'
+      const numThreeBlurb = document.createElement('h3')
+      numThreeBlurb.innerText = 'Information will go here for the user to read'
+      const numThreeButton = document.createElement('button')
+      numThreeButton.id = 'num2-button'
+      numThreeButton.innerText = 'Select'
+      const numThreeMore = document.createElement('a')
+      numThreeMore.href = 'https://breatheact.org/'
+      numThreeMore.innerText = 'Learn More'
 
+      numThreeDiv.appendChild(numThreeTitle)
+      numThreeDiv.appendChild(numThreeBlurb)
+      numThreeDiv.appendChild(numThreeButton)
+      numThreeDiv.appendChild(numThreeMore)
 
-
-      const topicsPage = document.createElement('div')
-      topicsPage.id = 'topics-page'
-      const letterPage = document.createElement('div')
-      letterPage.id = 'letter-page'
 
       const main = document.querySelector('main')
-      
 
-      topicsPage.append(h2)
-      topicsPage.append(h3)
-      topicsPage.append(button)
-      topicsPage.append(a)
 
+      // const numberTwo = document.querySelector('number-two')
+      // const NumberThree = document.querySelector('number-three')
+
+  
       main.append(topicsPage)
 
+      //function to specify letter
 
-      writeLetter = (e) => {
+      compose = (e) => {
         e.preventDefault()
         topicsPage.remove()
 
+        document.querySelector('h1').innerText = 'That\'s it. Edit, sign, and copy your call to action below.'
+
         const letter = document.createElement('input')
-        letter.value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        letter.value = `${senatorName} ${senatorTitle}`
+
+        // log keys in address object:
+        for (const key in senatorAddressObj) {
+          console.log(senatorAddressObj[key])
+        } // need to add to letter.value
+
+        
+        const copyButton = document.createElement('button')
+        copyButton.id = 'copy'
+        copyButton.innerText = 'COPY'
+
+        h4 = document.createElement('h4')
+        h4.innerText = 'Consider donating to one of these organizations to keep up the momentum:'
+
 
         main.append(letter)
-
-        document.querySelector('h1').innerText = 'That\'s it. Edit, sign, and copy your call to action below.'
+        main.append(copyButton)
+        main.append(h4)
       }
 
 
-      button.addEventListener('click', (e) => {
-        writeLetter(e)
+      breatheButton.addEventListener('click', (e) => {
+        compose(e)
       })
 
     }
