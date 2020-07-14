@@ -109,12 +109,7 @@ async function writeLetter(url) {
 
       const main = document.querySelector('main')
 
-
-      // const numberTwo = document.querySelector('number-two')
-      // const NumberThree = document.querySelector('number-three')
-
-  
-      main.append(topicsPage)
+      // main.append(topicsPage)
 
       //function to specify letter
 
@@ -132,18 +127,38 @@ async function writeLetter(url) {
           console.log(senatorAddressObj[key])
         } // need to add to letter.value
 
-        
+        const finalPage = document.getElementById('final')
+
         const copyButton = document.createElement('button')
         copyButton.id = 'copy'
         copyButton.innerText = 'COPY'
 
-        h4 = document.createElement('h4')
-        h4.innerText = 'Consider donating to one of these organizations to keep up the momentum:'
+        const h4 = document.createElement('h4')
+        h4.innerText = 'Consider donating to one of these organizations to keep up your momentum:'
 
+        const ul = document.createElement('ul')
 
-        main.append(letter)
-        main.append(copyButton)
-        main.append(h4)
+        const org1 = document.createElement('li')
+        org1.innerHTML = '<a href="http://wwww.theokraproject">The Okra Project</a>'
+        ul.append(org1)
+
+        const org2 = document.createElement('li')
+        org2.innerHTML = '<a href="https://www.blackandpink.org/">Black and Pink</a>'
+        ul.append(org2)
+
+        const org3 = document.createElement('li')
+        org3.innerHTML = '<a href="https://www.glitsinc.org/">G.L.I.T.S.</a>'
+        ul.append(org3)
+
+        const org4 = document.createElement('li')
+        org4.innerHTML = '<a href="https://www.forbreonna.com/">ForBreonna.com</a>'
+        ul.append(org4)
+        
+        finalPage.appendChild(letter)
+        finalPage.appendChild(copyButton)
+        finalPage.appendChild(h4)
+        finalPage.appendChild(ul)
+       
       }
 
 
