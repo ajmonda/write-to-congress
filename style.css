@@ -1,4 +1,7 @@
-
+body {
+  background-color: #F5CB5C;
+  color: #242423;
+}
 
 #container {
   max-width: 70vw;
@@ -12,12 +15,15 @@
 }
 
 h1 {
-  font-size: 35px;
-  font-style: italic;
+  font-size: 40px;
+  /* font-style: italic; */
   /* line-height: 1.3; */
   text-align: center;
   margin-bottom: 25px;
   margin-top: 30px;
+  font-family: 'Bebas Neue', cursive;
+
+
 }
 
 .address-form {
@@ -25,11 +31,18 @@ h1 {
   
 }
 
+::placeholder {
+  color: #333533;
+}
+
 input {
+  opacity: .8;
   padding: 10px;
   display: block;
   margin: 15px auto;
   min-width: 80%;
+  background-color: #e8eddf;
+  border: 0;
 }
 
 button {
@@ -38,30 +51,42 @@ button {
   justify-content: center;
   min-width: 85%;
   margin: 35px auto;
+  background-color: #333533;
+  color: #cfdbd5;
+  border: none;
+  /* border-color: solid black; */
 }
 
 h2 {
-  /* font-family: 'Montserrat', sans-serif; */
-  font-size: 23px;
+  
+  font-size: 20px;
   margin: 10px auto auto 0;
   font-weight: 500;
 }
 
 h3 {
+  
   font-family: 'Montserrat', sans-serif;
   
   font-weight: 200;
   /* text-align: justify; */
   line-height: 1;
-  font-size: 17px;
-  margin: 10px auto;
-  margin-top: 20px;
+  font-size: 20px;
+  margin: 0 auto
 }
+
+/* #topics-page {
+  max-width: 100%;
+  border-style: solid;
+  border-color: #e8eddf;
+  background-color: #e8eddf;
+} */
 
 .topics {
   margin-top: 10px;
   margin-bottom: 45px;
   padding: 0;
+  /* background-color: #e8eddf; */
 }
 
 button.topic-button {
@@ -70,7 +95,7 @@ button.topic-button {
   /* flex-direction: column; */
   padding: 10px;
   min-width: 80%;
-  margin: auto;
+  margin: 10px 0;
   min-width: 100%;
 }
 
@@ -85,3 +110,11 @@ a.more {
   font-size: 17px;
   
 }
+© 2020 GitHub, Inc.
+Help
+Support
+API
+Training
+Blog
+About
+GitHub Enterprise Server 2.21.1

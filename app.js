@@ -32,7 +32,7 @@ async function writeLetter(url) {
     form.remove()
 
     const topicsPage = document.getElementById('topics-page')
-    document.querySelector('h1').innerText = "These topics need your voice."
+    document.querySelector('h1').innerText = "These topics need your voice"
 
     // // div 1
     const breatheDiv = document.getElementById('breathe-div')
@@ -40,19 +40,17 @@ async function writeLetter(url) {
     const breatheTitle = document.createElement('h2')
     breatheTitle.innerText = 'Federal BREATHE Act'
     const breatheBlurb = document.createElement('h3')
-    breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing and invest in a "new vision of public safety."'
+    breatheBlurb.innerText = 'A proposed bill that aims to significantly divest from incarceration and policing'
     const breatheButton = document.createElement('button')
     breatheButton.classList.add('topic-button')
-    breatheButton.innerText = 'Select'
-    
-    const breatheMore = document.createElement('a')
-    breatheMore.classList.add('more')
-    breatheMore.href = 'https://breatheact.org/'
-    breatheMore.innerText = 'Learn More'
+    breatheButton.innerText = 'SELECT'
+    const breatheMore = document.createElement('button')
+    breatheMore.classList.add('topic-button')
+    breatheMore.innerText = 'LEARN MORE'
 
     breatheDiv.appendChild(breatheTitle)
-    breatheDiv.appendChild(breatheMore)
     breatheDiv.appendChild(breatheBlurb)
+    breatheDiv.appendChild(breatheMore)
     breatheDiv.appendChild(breatheButton)
     
 
@@ -62,18 +60,17 @@ async function writeLetter(url) {
     const extendTitle = document.createElement('h2')
     extendTitle.innerText = 'COVID-19 Unemployment'
     const extendBlurb = document.createElement('h3')
-    extendBlurb.innerText = 'Support the petition to extend the weekly additional unemployment assistance until at least December 31, 2020 or longer, if necesary.'
+    extendBlurb.innerText = 'In support of the petition to extend the weekly additional $600'
     const extendButton = document.createElement('button')
     extendButton.classList.add('topic-button')
-    extendButton.innerText = 'Select'
-    const extendMore = document.createElement('a')
-    extendMore.classList.add('more')
-    extendMore.href = 'https://sign.moveon.org/petitions/extend-unemployment-600-per-week-additional-assistance-through-at-least-dec-31-2020/'
-    extendMore.innerText = 'Learn More'
+    extendButton.innerText = 'SELECT'
+    const extendMore = document.createElement('button')
+    extendMore.classList.add('topic-button')
+    extendMore.innerText = 'LEARN MORE'
 
     extendDiv.appendChild(extendTitle)
-    extendDiv.appendChild(extendMore)
     extendDiv.appendChild(extendBlurb)
+    extendDiv.appendChild(extendMore)
     extendDiv.appendChild(extendButton)
     
 
@@ -112,7 +109,7 @@ async function writeLetter(url) {
       e.preventDefault()
       topicsPage.remove()
 
-      document.querySelector('h1').innerText = 'That\'s it. Edit, sign, and copy your call to action below.'
+      document.querySelector('h1').innerText = 'Edit, sign, copy'
 
       const letter = document.createElement('input')
       letter.value = `${senatorName} ${senatorTitle} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
@@ -129,7 +126,7 @@ async function writeLetter(url) {
       copyButton.innerText = 'COPY'
 
       const h4 = document.createElement('h4')
-      h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>'
+      h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>.'
 
       finalPage.appendChild(letter)
       finalPage.appendChild(copyButton)
