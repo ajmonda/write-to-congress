@@ -24,8 +24,9 @@ const h1 = document.querySelector('h1')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
-  const senator = await getSenator(url)
-  showSenator(senator)
+  await getCongress(url)
+  // const senator = await getSenator(url)
+  // showSenator(senator)
 })
 
 function getURL(e) {
@@ -36,7 +37,7 @@ function getURL(e) {
   return url
 }
 
-async function getCongre(url) {
+async function getCongress(url) {
 
   try {
 
@@ -46,47 +47,43 @@ async function getCongre(url) {
 
     const offices = response.data.offices
 
-    function getSenatorIndex() {
+    function getIndex() {
       for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === `${state.value} State Senator`)
-          const senatorIndex = offices[i].officialIndices[0]
-          return senatorIndex
-          // function only returns value if input is CAP, need drop-down menu for state input
-        } else {
-          // if state drop-down menu no need for user error message
-          console.log('nope')
-        }
-    }
-    
-    function getRepIndex() {
-      for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === 'U.S. Representative')
+        if (offices[i].name === `${state.value} State Senator`) {
+          const senIndex = offices[i].officialIndices[0]
+          console.log(senIndex)
+        } else if (offices[i].name === 'U.S. Representative') {
           const repIndex = offices[i].officialIndices[0]
-          return repIndex
+          console.log(repIndex)
           // function only returns value if input is CAP, need drop-down menu for state input
         } else {
           // if state drop-down menu no need for user error message
           console.log('nope')
         }
+      }
     }
+
+    getIndex()
     
-    const deets = response.data.officials[getSenatorIndex()]
+  
+      // const deets = response.data.officials[getIndex()]
 
-    const senator = {
-      name: deets.name,
-      party: deets.party,
-      email: deets.emails[0],
-      address: deets.address
+      // const senator = {
+      //   name: deets.name,
+      //   party: deets.party,
+      //   email: deets.emails[0],
+      //   address: deets.address
+      // }
+
+      // return senator
+
+    } catch (err) {
+      console.log(`error: ${err}`)
+    } finally {
+      console.log(`made it`)
     }
-
-    return senator
-
-  } catch (err) {
-    console.log(`error: ${err}`)
-  } finally {
-    console.log(`made it`)
   }
-}
+
 
 // don't use body, use "senator-confirm" div
 function showSenator(senator) {
@@ -107,137 +104,3 @@ function showSenator(senator) {
   button.innerText = 'OK!'
   body.append(button)
 }
-
-//event listener on "ok" to bring up issues page
-
-
-
-
-
-
-
-
-
-// function showSenator() {
-
-//   form.remove()
-//   h1.innerText = 'Your senator is'
-
-//   const h2 = document.createElement('h2')
-//   h2.innerText = senator.deets.name
-
-//   const h3 = document.createElement('h3')
-//   h3.innerText = senator.deets.party
-
-// }
-//     form.remove()
-
-//     const topicsPage = document.getElementById('topics-page')
-//     document.querySelector('h1').innerText = "These topics need your voice"
-
-//     // // div 1
-//     const breatheDiv = document.getElementById('breathe-div')
-
-//     const breatheTitle = document.createElement('h2')
-//     breatheTitle.innerText = 'Federal BREATHE Act'
-//     const breatheBlurb = document.createElement('h3')
-//     breatheBlurb.innerText = 'A proposed bill that aims to significantly divest from incarceration and policing'
-//     const breatheButton = document.createElement('button')
-//     breatheButton.classList.add('topic-button')
-//     breatheButton.innerText = 'SELECT'
-//     const breatheMore = document.createElement('button')
-//     breatheMore.classList.add('topic-button')
-//     breatheMore.innerText = 'LEARN MORE'
-
-//     breatheDiv.appendChild(breatheTitle)
-//     breatheDiv.appendChild(breatheBlurb)
-//     breatheDiv.appendChild(breatheMore)
-//     breatheDiv.appendChild(breatheButton)
-
-
-//     // // div 2
-//     const extendDiv = document.getElementById('extend')
-
-//     const extendTitle = document.createElement('h2')
-//     extendTitle.innerText = 'COVID-19 Unemployment'
-//     const extendBlurb = document.createElement('h3')
-//     extendBlurb.innerText = 'In support of the petition to extend the weekly additional $600'
-//     const extendButton = document.createElement('button')
-//     extendButton.classList.add('topic-button')
-//     extendButton.innerText = 'SELECT'
-//     const extendMore = document.createElement('button')
-//     extendMore.classList.add('topic-button')
-//     extendMore.innerText = 'LEARN MORE'
-
-//     extendDiv.appendChild(extendTitle)
-//     extendDiv.appendChild(extendBlurb)
-//     extendDiv.appendChild(extendMore)
-//     extendDiv.appendChild(extendButton)
-
-
-
-//     // // div 3
-//     const numThreeDiv = document.getElementById('number-three')
-
-//     const numThreeTitle = document.createElement('h2')
-//     numThreeTitle.innerText = 'Number Three'
-//     const numThreeBlurb = document.createElement('h3')
-//     numThreeBlurb.innerText = 'Information will go here for the user to read'
-//     const numThreeButton = document.createElement('button')
-//     numThreeButton.classList.add('topic-button')
-//     numThreeButton.innerText = 'Select'
-//     const numThreeMore = document.createElement('a')
-//     numThreeMore.href = 'https://breatheact.org/'
-//     numThreeMore.innerText = 'Learn More'
-
-//     numThreeDiv.appendChild(numThreeTitle)
-//     numThreeDiv.appendChild(numThreeBlurb)
-//     numThreeDiv.appendChild(numThreeMore)
-//     numThreeDiv.appendChild(numThreeButton)
-
-
-//     breatheButton.addEventListener('click', (e) => {
-//       compose(e)
-//     })
-//     extendButton.addEventListener('click', (e) => {
-//       compose(e)
-//     })
-//     // breatheButton.addEventListener('click', (e) => {
-//     //   compose(e)
-//     // })
-
-//     compose = (e) => {
-//       e.preventDefault()
-//       topicsPage.remove()
-
-//       document.querySelector('h1').innerText = 'Edit, sign, copy'
-
-//       const letter = document.createElement('input')
-//       letter.value = `${senatorName} ${senatorEmail}`
-//       // log keys in address object:
-//       for (const key in senatorAddressObj) {
-//         console.log(senatorAddressObj[key])
-//       } // need to add to letter.value
-
-//       const finalPage = document.getElementById('final')
-
-//       const copyButton = document.createElement('button')
-//       copyButton.id = 'copy'
-//       copyButton.innerText = 'COPY'
-
-//       const h4 = document.createElement('h4')
-//       h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>.'
-
-//       finalPage.appendChild(letter)
-//       finalPage.appendChild(copyButton)
-//       finalPage.appendChild(h4)
-
-//     }
-
-//   } catch (err) {
-//     console.log(`error: ${err}`)
-//   } finally {
-//     console.log(`if successful, response displayed`)
-//   }
-
-// }
