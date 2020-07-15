@@ -40,7 +40,7 @@ async function writeLetter(url) {
     const breatheTitle = document.createElement('h2')
     breatheTitle.innerText = 'Federal BREATHE Act'
     const breatheBlurb = document.createElement('h3')
-    breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing.'
+    breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing and "invest in a new vision of public safety."'
     const breatheButton = document.createElement('button')
     breatheButton.classList.add('topic-button')
     breatheButton.innerText = 'Select'
@@ -51,8 +51,8 @@ async function writeLetter(url) {
     breatheMore.innerText = 'Learn More'
 
     breatheDiv.appendChild(breatheTitle)
-    breatheDiv.appendChild(breatheBlurb)
     breatheDiv.appendChild(breatheMore)
+    breatheDiv.appendChild(breatheBlurb)
     breatheDiv.appendChild(breatheButton)
     
 
