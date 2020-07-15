@@ -31,7 +31,7 @@ async function writeLetter(url) {
     const form = document.querySelector('form')
     form.remove()
 
-    const topicsPage = document.getElementById('topic-page')
+    const topicsPage = document.getElementById('topics-page')
     document.querySelector('h1').innerText = "These topics need your voice."
 
     // // div 1
@@ -42,16 +42,19 @@ async function writeLetter(url) {
     const breatheBlurb = document.createElement('h3')
     breatheBlurb.innerText = 'The BREATHE Act aims to divest federal resources from incarceration and policing.'
     const breatheButton = document.createElement('button')
-    
+    breatheButton.classList.add('topic-button')
     breatheButton.innerText = 'Select'
+    
     const breatheMore = document.createElement('a')
+    breatheMore.classList.add('more')
     breatheMore.href = 'https://breatheact.org/'
     breatheMore.innerText = 'Learn More'
 
     breatheDiv.appendChild(breatheTitle)
     breatheDiv.appendChild(breatheBlurb)
-    breatheDiv.appendChild(breatheButton)
     breatheDiv.appendChild(breatheMore)
+    breatheDiv.appendChild(breatheButton)
+    
 
     // // div 2
     const extendDiv = document.getElementById('extend')
@@ -59,45 +62,45 @@ async function writeLetter(url) {
     const extendTitle = document.createElement('h2')
     extendTitle.innerText = 'COVID-19 Unemployment'
     const extendBlurb = document.createElement('h3')
-    extendBlurb.innerText = 'Support the petition to extend the weekly additional $600 unemployment assistance until at least December 31, 2020.'
+    extendBlurb.innerText = 'Support the petition to extend the weekly additional $600 unemployment assistance until at least December 31, 2020 or longer, if necesary.'
     const extendButton = document.createElement('button')
-    // extendButton.id = 'extend-button'
+    extendButton.classList.add('topic-button')
     extendButton.innerText = 'Select'
     const extendMore = document.createElement('a')
+    extendMore.classList.add('more')
     extendMore.href = 'https://sign.moveon.org/petitions/extend-unemployment-600-per-week-additional-assistance-through-at-least-dec-31-2020/'
     extendMore.innerText = 'Learn More'
 
     extendDiv.appendChild(extendTitle)
     extendDiv.appendChild(extendBlurb)
-    extendDiv.appendChild(extendButton)
     extendDiv.appendChild(extendMore)
+    extendDiv.appendChild(extendButton)
+    
 
 
     // // div 3
-    // const numThreeDiv = document.getElementById('number-three')
+    const numThreeDiv = document.getElementById('number-three')
 
-    // const numThreeTitle = document.createElement('h2')
-    // numThreeTitle.innerText = 'Number Three'
-    // const numThreeBlurb = document.createElement('h3')
-    // numThreeBlurb.innerText = 'Information will go here for the user to read'
-    // const numThreeButton = document.createElement('button')
-    // numThreeButton.id = 'numThree-button'
-    // numThreeButton.innerText = 'Select'
-    // const numThreeMore = document.createElement('a')
-    // numThreeMore.href = 'https://breatheact.org/'
-    // numThreeMore.innerText = 'Learn More'
+    const numThreeTitle = document.createElement('h2')
+    numThreeTitle.innerText = 'Number Three'
+    const numThreeBlurb = document.createElement('h3')
+    numThreeBlurb.innerText = 'Information will go here for the user to read'
+    const numThreeButton = document.createElement('button')
+    numThreeButton.classList.add('topic-button')
+    numThreeButton.innerText = 'Select'
+    const numThreeMore = document.createElement('a')
+    numThreeMore.href = 'https://breatheact.org/'
+    numThreeMore.innerText = 'Learn More'
 
-    // numThreeDiv.appendChild(numThreeTitle)
-    // numThreeDiv.appendChild(numThreeBlurb)
-    // numThreeDiv.appendChild(numThreeButton)
-    // numThreeDiv.appendChild(numThreeMore)
-
-    breatheButton.classList.add('topic-button')
+    numThreeDiv.appendChild(numThreeTitle)
+    numThreeDiv.appendChild(numThreeBlurb)
+    numThreeDiv.appendChild(numThreeMore)
+    numThreeDiv.appendChild(numThreeButton)
+    
 
     breatheButton.addEventListener('click', (e) => {
       compose(e)
     })
-
     extendButton.addEventListener('click', (e) => {
       compose(e)
     })
