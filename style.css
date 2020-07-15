@@ -54,7 +54,8 @@ h3 {
   text-align: justify;
   line-height: 1;
   font-size: 17px;
-  margin: 0 auto;
+  margin: 10px auto;
+  margin-top: 20px;
 }
 
 .topics {
@@ -75,7 +76,7 @@ button.topic-button {
 a.more {
   display: block;
   margin: 0;
-  text-align: right;
+  /* text-align: right; */
   position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
