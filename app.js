@@ -69,6 +69,7 @@ async function writeLetter(url) {
       }
     }
 
+    // get senator
     const deets = officials[getIndex(offices)]
 
     const senator = {
@@ -78,8 +79,8 @@ async function writeLetter(url) {
       address: deets.address
     }
 
-    console.log(senator)
-
+ 
+    //show senator
     form.remove()
     
     h1.innerText = 'Your senator is'
@@ -90,14 +91,12 @@ async function writeLetter(url) {
     body.append(h2)
 
     const h3 = document.createElement('h3')
-    h3.innerText = senator.name
+    h3.innerText = senator.party
     body.append(h3)
 
-    
-
-
-
-
+    const button = document.createElement('button')
+    button.innerText = 'OK!'
+    body.append(button)
 
 
   } catch (err) {
