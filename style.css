@@ -51,7 +51,7 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   
   font-weight: 200;
-  text-align: justify;
+  /* text-align: justify; */
   line-height: 1;
   font-size: 17px;
   margin: 10px auto;
@@ -65,12 +65,13 @@ h3 {
 }
 
 button.topic-button {
+  box-style: border-box;
+  display: flex;
+  /* flex-direction: column; */
   padding: 10px;
-  display: block;
-  justify-content: center;
-  min-width: 50%;
-  margin: 10px 0;
   min-width: 80%;
+  margin: auto;
+  min-width: 100%;
 }
 
 a.more {
@@ -79,7 +80,7 @@ a.more {
   /* text-align: right; */
   position: relative;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: 200;
   line-height: 1;
   font-size: 17px;
   

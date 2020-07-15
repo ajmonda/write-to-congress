@@ -62,7 +62,7 @@ async function writeLetter(url) {
     const extendTitle = document.createElement('h2')
     extendTitle.innerText = 'COVID-19 Unemployment'
     const extendBlurb = document.createElement('h3')
-    extendBlurb.innerText = 'Support the petition to extend the weekly additional $600 unemployment assistance until at least December 31, 2020 or longer, if necesary.'
+    extendBlurb.innerText = 'Support the petition to extend the weekly additional unemployment assistance until at least December 31, 2020 or longer, if necesary.'
     const extendButton = document.createElement('button')
     extendButton.classList.add('topic-button')
     extendButton.innerText = 'Select'
