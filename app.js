@@ -6,7 +6,7 @@ addressForm.addEventListener('submit', (e) => {
   // passing event (submit) to getURL
   const url = getURL(e)
   // async unnecessary as it is last step in function
-  writeLetter(url)
+  getSenator(url)
 })
 
 
@@ -27,7 +27,7 @@ function getURL(e) {
   return url
 }
 
-async function writeLetter(url) {
+async function getSenator(url) {
 
   try {
 
@@ -54,145 +54,150 @@ async function writeLetter(url) {
     const offices = response.data.offices
     const officials = response.data.officials
 
-    function getSenator() {
-      function getIndex() {
-        for (let i = 0; i < offices.length; i++) {
-          if (offices[i].name === `${stateForm.value} State Senator`) {
-            const index = offices[i].officialIndices
-            // function only returns value if input is cap, need drop-down menu for state input
-            return index[0]
-          } else {
-            // if state drop-down menu no need for user error message
-            console.log('nope')
-          }
+    // function getSenator() {
+    function getIndex() {
+      for (let i = 0; i < offices.length; i++) {
+        if (offices[i].name === `${stateForm.value} State Senator`) {
+          const index = offices[i].officialIndices
+          // function only returns value if input is cap, need drop-down menu for state input
+          return index[0]
+        } else {
+          // if state drop-down menu no need for user error message
+          console.log('nope')
         }
       }
-
-      // keys i need: name(str), emails(arr), address(obj) <-- maybe
-      const deets = officials[getIndex()]
-
-      const senator = {
-        name: deets.name,
-        party: deets.party,
-        email: deets.emails[0],
-        address: deets.address
-      }
-      console.log(senator)
-      return senator
     }
 
-    getSenator()
+    const deets = officials[getIndex()]
 
-
-    const form = document.querySelector('form')
-    form.remove()
-
-    const topicsPage = document.getElementById('topics-page')
-    document.querySelector('h1').innerText = "These topics need your voice"
-
-    // // div 1
-    const breatheDiv = document.getElementById('breathe-div')
-
-    const breatheTitle = document.createElement('h2')
-    breatheTitle.innerText = 'Federal BREATHE Act'
-    const breatheBlurb = document.createElement('h3')
-    breatheBlurb.innerText = 'A proposed bill that aims to significantly divest from incarceration and policing'
-    const breatheButton = document.createElement('button')
-    breatheButton.classList.add('topic-button')
-    breatheButton.innerText = 'SELECT'
-    const breatheMore = document.createElement('button')
-    breatheMore.classList.add('topic-button')
-    breatheMore.innerText = 'LEARN MORE'
-
-    breatheDiv.appendChild(breatheTitle)
-    breatheDiv.appendChild(breatheBlurb)
-    breatheDiv.appendChild(breatheMore)
-    breatheDiv.appendChild(breatheButton)
-
-
-    // // div 2
-    const extendDiv = document.getElementById('extend')
-
-    const extendTitle = document.createElement('h2')
-    extendTitle.innerText = 'COVID-19 Unemployment'
-    const extendBlurb = document.createElement('h3')
-    extendBlurb.innerText = 'In support of the petition to extend the weekly additional $600'
-    const extendButton = document.createElement('button')
-    extendButton.classList.add('topic-button')
-    extendButton.innerText = 'SELECT'
-    const extendMore = document.createElement('button')
-    extendMore.classList.add('topic-button')
-    extendMore.innerText = 'LEARN MORE'
-
-    extendDiv.appendChild(extendTitle)
-    extendDiv.appendChild(extendBlurb)
-    extendDiv.appendChild(extendMore)
-    extendDiv.appendChild(extendButton)
-
-
-
-    // // div 3
-    const numThreeDiv = document.getElementById('number-three')
-
-    const numThreeTitle = document.createElement('h2')
-    numThreeTitle.innerText = 'Number Three'
-    const numThreeBlurb = document.createElement('h3')
-    numThreeBlurb.innerText = 'Information will go here for the user to read'
-    const numThreeButton = document.createElement('button')
-    numThreeButton.classList.add('topic-button')
-    numThreeButton.innerText = 'Select'
-    const numThreeMore = document.createElement('a')
-    numThreeMore.href = 'https://breatheact.org/'
-    numThreeMore.innerText = 'Learn More'
-
-    numThreeDiv.appendChild(numThreeTitle)
-    numThreeDiv.appendChild(numThreeBlurb)
-    numThreeDiv.appendChild(numThreeMore)
-    numThreeDiv.appendChild(numThreeButton)
-
-
-    breatheButton.addEventListener('click', (e) => {
-      compose(e)
-    })
-    extendButton.addEventListener('click', (e) => {
-      compose(e)
-    })
-    // breatheButton.addEventListener('click', (e) => {
-    //   compose(e)
-    // })
-
-    compose = (e) => {
-      e.preventDefault()
-      topicsPage.remove()
-
-      document.querySelector('h1').innerText = 'Edit, sign, copy'
-
-      const letter = document.createElement('input')
-      letter.value = `${senatorName} ${senatorEmail}`
-      // log keys in address object:
-      for (const key in senatorAddressObj) {
-        console.log(senatorAddressObj[key])
-      } // need to add to letter.value
-
-      const finalPage = document.getElementById('final')
-
-      const copyButton = document.createElement('button')
-      copyButton.id = 'copy'
-      copyButton.innerText = 'COPY'
-
-      const h4 = document.createElement('h4')
-      h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>.'
-
-      finalPage.appendChild(letter)
-      finalPage.appendChild(copyButton)
-      finalPage.appendChild(h4)
-
+    const senator = {
+      name: deets.name,
+      party: deets.party,
+      email: deets.emails[0],
+      address: deets.address
     }
-
+    console.log(senator)
+    return senator
   } catch (err) {
     console.log(`error: ${err}`)
   } finally {
     console.log(`if successful, response displayed`)
   }
-
 }
+    // }
+
+    // getSenator()
+
+
+//     const form = document.querySelector('form')
+//     form.remove()
+
+//     const topicsPage = document.getElementById('topics-page')
+//     document.querySelector('h1').innerText = "These topics need your voice"
+
+//     // // div 1
+//     const breatheDiv = document.getElementById('breathe-div')
+
+//     const breatheTitle = document.createElement('h2')
+//     breatheTitle.innerText = 'Federal BREATHE Act'
+//     const breatheBlurb = document.createElement('h3')
+//     breatheBlurb.innerText = 'A proposed bill that aims to significantly divest from incarceration and policing'
+//     const breatheButton = document.createElement('button')
+//     breatheButton.classList.add('topic-button')
+//     breatheButton.innerText = 'SELECT'
+//     const breatheMore = document.createElement('button')
+//     breatheMore.classList.add('topic-button')
+//     breatheMore.innerText = 'LEARN MORE'
+
+//     breatheDiv.appendChild(breatheTitle)
+//     breatheDiv.appendChild(breatheBlurb)
+//     breatheDiv.appendChild(breatheMore)
+//     breatheDiv.appendChild(breatheButton)
+
+
+//     // // div 2
+//     const extendDiv = document.getElementById('extend')
+
+//     const extendTitle = document.createElement('h2')
+//     extendTitle.innerText = 'COVID-19 Unemployment'
+//     const extendBlurb = document.createElement('h3')
+//     extendBlurb.innerText = 'In support of the petition to extend the weekly additional $600'
+//     const extendButton = document.createElement('button')
+//     extendButton.classList.add('topic-button')
+//     extendButton.innerText = 'SELECT'
+//     const extendMore = document.createElement('button')
+//     extendMore.classList.add('topic-button')
+//     extendMore.innerText = 'LEARN MORE'
+
+//     extendDiv.appendChild(extendTitle)
+//     extendDiv.appendChild(extendBlurb)
+//     extendDiv.appendChild(extendMore)
+//     extendDiv.appendChild(extendButton)
+
+
+
+//     // // div 3
+//     const numThreeDiv = document.getElementById('number-three')
+
+//     const numThreeTitle = document.createElement('h2')
+//     numThreeTitle.innerText = 'Number Three'
+//     const numThreeBlurb = document.createElement('h3')
+//     numThreeBlurb.innerText = 'Information will go here for the user to read'
+//     const numThreeButton = document.createElement('button')
+//     numThreeButton.classList.add('topic-button')
+//     numThreeButton.innerText = 'Select'
+//     const numThreeMore = document.createElement('a')
+//     numThreeMore.href = 'https://breatheact.org/'
+//     numThreeMore.innerText = 'Learn More'
+
+//     numThreeDiv.appendChild(numThreeTitle)
+//     numThreeDiv.appendChild(numThreeBlurb)
+//     numThreeDiv.appendChild(numThreeMore)
+//     numThreeDiv.appendChild(numThreeButton)
+
+
+//     breatheButton.addEventListener('click', (e) => {
+//       compose(e)
+//     })
+//     extendButton.addEventListener('click', (e) => {
+//       compose(e)
+//     })
+//     // breatheButton.addEventListener('click', (e) => {
+//     //   compose(e)
+//     // })
+
+//     compose = (e) => {
+//       e.preventDefault()
+//       topicsPage.remove()
+
+//       document.querySelector('h1').innerText = 'Edit, sign, copy'
+
+//       const letter = document.createElement('input')
+//       letter.value = `${senatorName} ${senatorEmail}`
+//       // log keys in address object:
+//       for (const key in senatorAddressObj) {
+//         console.log(senatorAddressObj[key])
+//       } // need to add to letter.value
+
+//       const finalPage = document.getElementById('final')
+
+//       const copyButton = document.createElement('button')
+//       copyButton.id = 'copy'
+//       copyButton.innerText = 'COPY'
+
+//       const h4 = document.createElement('h4')
+//       h4.innerHTML = 'To easily contact Kentucky legislators in defense of Breonna Taylor\'s life, go to <span id "for-breonna"><a href="http://www.forbreonna.com/">ForBreonna.com</a></span>.'
+
+//       finalPage.appendChild(letter)
+//       finalPage.appendChild(copyButton)
+//       finalPage.appendChild(h4)
+
+//     }
+
+//   } catch (err) {
+//     console.log(`error: ${err}`)
+//   } finally {
+//     console.log(`if successful, response displayed`)
+//   }
+
+// }
