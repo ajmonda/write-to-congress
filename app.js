@@ -1,31 +1,6 @@
-const form = document.querySelector('form')
-const street = document.querySelector('#street')
-const city = document.querySelector('#city')
-const state = document.querySelector('#state')
-const h1 = document.querySelector('h1')
-
-form.addEventListener('submit', async (e) => {
-
-  const url = getURL(e)
-  const senator = await getSenator(url)
-  showSenator(senator)
-  
-})
-
-function getURL(e) {
-
-  e.preventDefault()
-
-  const address = `${street.value}%20${city.value}%20${state.value}`
-  const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
-  const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
-
-  return url
-}
-// console.log(response.data) 
+// https://docs.opencivicdata.org/en/latest/proposals/0002.html
 
 // divisions.(key) //	The unique Open Civic Data identifier for this division.
-// // https://docs.opencivicdata.org/en/latest/proposals/0002.html
 // // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
 
 // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
@@ -40,15 +15,26 @@ function getURL(e) {
 // // officials[].emails // (array)	The direct email addresses for the official.
 // // officials[].address // (array of obj) snail mail
 
-//     return response.data
 
-//   } catch (err) {
-//     console.log(`error: ${err}`)
+const form = document.querySelector('form')
+const street = document.querySelector('#street')
+const city = document.querySelector('#city')
+const state = document.querySelector('#state')
+const h1 = document.querySelector('h1')
 
-//   } finally {
-//     console.log(`if successful, response displayed`)
-//   }
-// }
+form.addEventListener('submit', async (e) => {
+  const url = getURL(e)
+  const senator = await getSenator(url)
+  showSenator(senator)
+})
+
+function getURL(e) {
+  e.preventDefault()
+  const address = `${street.value}%20${city.value}%20${state.value}`
+  const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
+  const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
+  return url
+}
 
 async function getSenator(url) {
 
@@ -83,12 +69,11 @@ async function getSenator(url) {
   } catch (err) {
     console.log(`error: ${err}`)
   } finally {
-    console.log(`if successful, response displayed`)
+    console.log(`made it`)
   }
 }
 
-
-
+// don't use body, use "senator-confirm" div
 function showSenator(senator) {
   form.remove()
 
@@ -103,10 +88,14 @@ function showSenator(senator) {
   h3.innerText = senator.party
   body.append(h3)
 
-  const button = document.createElement('button')
+  const ok = document.createElement('button')
   button.innerText = 'OK!'
   body.append(button)
 }
+
+//event listener on "ok" to bring up issues page
+
+
 
 
 
