@@ -1,5 +1,3 @@
-
-
 const addressForm = document.querySelector('form')
 
 
@@ -7,7 +5,7 @@ addressForm.addEventListener('submit', (e) => {
   // console.log(e) // e(vent) = 'submit'
   // passing event (submit) to getURL
   const url = getURL(e)
-   // async unnecessary as it is last step in function
+  // async unnecessary as it is last step in function
   writeLetter(url)
 })
 
@@ -35,49 +33,56 @@ async function writeLetter(url) {
 
     const response = await axios.get(url)
 
-    // console.log(response.data) --->
-     
-      // divisions.(key) //	The unique Open Civic Data identifier for this division.
-      // // https://docs.opencivicdata.org/en/latest/proposals/0002.html
-      // // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
-      
-      // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
-    
-      // offices[].name	// (string) The human-readable name of the office.
-      // i need "<state> State Senator"
-    
-      // offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
-    
-      // officials[] // here are thepeople
-      // // officials[].name // (string) official's name
-      // // officials[].emails // (array)	The direct email addresses for the official.
-      // // officials[].address // (array of obj) snail mail
-    
+    // console.log(response.data) 
+
+    // divisions.(key) //	The unique Open Civic Data identifier for this division.
+    // // https://docs.opencivicdata.org/en/latest/proposals/0002.html
+    // // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
+
+    // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
+
+    // offices[].name	// (string) The human-readable name of the office.
+    // i need "<state> State Senator"
+
+    // offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
+
+    // officials[] // here are thepeople
+    // // officials[].name // (string) official's name
+    // // officials[].emails // (array)	The direct email addresses for the official.
+    // // officials[].address // (array of obj) snail mail
+
     const offices = response.data.offices
     const officials = response.data.officials
 
-    function getIndex() {
-      for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === `${stateForm.value} State Senator`) {
-          const index = offices[i].officialIndices
-          // function only returns value if input is cap, need drop-down menu for state input
-          return index[0]
-        } else {
-          // if state drop-down menu no need for user error message
+    function getSenator() {
+      function getIndex() {
+        for (let i = 0; i < offices.length; i++) {
+          if (offices[i].name === `${stateForm.value} State Senator`) {
+            const index = offices[i].officialIndices
+            // function only returns value if input is cap, need drop-down menu for state input
+            return index[0]
+          } else {
+            // if state drop-down menu no need for user error message
             console.log('nope')
           }
         }
       }
-       
-    // keys i need: name(str), emails(arr), address(obj) <-- maybe
-    const senator = officials[getIndex()] 
 
-    const senatorName = senator.name
-    const senatorEmail = senator.emails[0]
+      // keys i need: name(str), emails(arr), address(obj) <-- maybe
+      const deets = officials[getIndex()]
 
-    //works
-    console.log(`name ${senatorName}`)
-    console.log(`email ${senatorEmail}`)
+      const senator = {
+        name: deets.name,
+        party: deets.party,
+        email: deets.emails[0],
+        address: deets.address
+      }
+      console.log(senator)
+      return senator
+    }
+
+    getSenator()
+
 
     const form = document.querySelector('form')
     form.remove()
@@ -103,7 +108,7 @@ async function writeLetter(url) {
     breatheDiv.appendChild(breatheBlurb)
     breatheDiv.appendChild(breatheMore)
     breatheDiv.appendChild(breatheButton)
-    
+
 
     // // div 2
     const extendDiv = document.getElementById('extend')
@@ -123,7 +128,7 @@ async function writeLetter(url) {
     extendDiv.appendChild(extendBlurb)
     extendDiv.appendChild(extendMore)
     extendDiv.appendChild(extendButton)
-    
+
 
 
     // // div 3
@@ -144,7 +149,7 @@ async function writeLetter(url) {
     numThreeDiv.appendChild(numThreeBlurb)
     numThreeDiv.appendChild(numThreeMore)
     numThreeDiv.appendChild(numThreeButton)
-    
+
 
     breatheButton.addEventListener('click', (e) => {
       compose(e)
