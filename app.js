@@ -1,18 +1,17 @@
-const addressForm = document.querySelector('form')
+const form = document.querySelector('form')
+const street = document.querySelector('#street')
+const city = document.querySelector('#city')
+const state = document.querySelector('#state')
+const h1 = document.querySelector('h1')
 
-
-addressForm.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   // console.log(e) // e(vent) = 'submit'
   // passing event (submit) to getURL
   const url = getURL(e)
-  // async unnecessary as it is last step in function
-  getSenator(url)
+  await writeLetter(url)
 })
 
 
-const streetForm = document.querySelector('#street')
-const cityForm = document.querySelector('#city')
-const stateForm = document.querySelector('#state')
 
 
 function getURL(e) {
@@ -21,13 +20,13 @@ function getURL(e) {
 
   e.preventDefault()
 
-  const address = `${streetForm.value}%20${cityForm.value}%20${stateForm.value}`
+  const address = `${street.value}%20${city.value}%20${state.value}`
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
   return url
 }
 
-async function getSenator(url) {
+async function writeLetter(url) {
 
   try {
 
@@ -51,15 +50,17 @@ async function getSenator(url) {
     // // officials[].emails // (array)	The direct email addresses for the official.
     // // officials[].address // (array of obj) snail mail
 
+
+
     const offices = response.data.offices
     const officials = response.data.officials
 
-    // function getSenator() {
-    function getIndex() {
+    function getIndex(offices) {
+
       for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === `${stateForm.value} State Senator`) {
+        if (offices[i].name === `${state.value} State Senator`) {
           const index = offices[i].officialIndices
-          // function only returns value if input is cap, need drop-down menu for state input
+          // function only returns value if input is CAP, need drop-down menu for state input
           return index[0]
         } else {
           // if state drop-down menu no need for user error message
@@ -68,7 +69,7 @@ async function getSenator(url) {
       }
     }
 
-    const deets = officials[getIndex()]
+    const deets = officials[getIndex(offices)]
 
     const senator = {
       name: deets.name,
@@ -76,20 +77,54 @@ async function getSenator(url) {
       email: deets.emails[0],
       address: deets.address
     }
+
     console.log(senator)
-    return senator
+
+    form.remove()
+    
+    h1.innerText = 'Your senator is'
+    const body = document.querySelector('body')
+
+    const h2 = document.createElement('h2')
+    h2.innerText = senator.name
+    body.append(h2)
+
+    const h3 = document.createElement('h3')
+    h3.innerText = senator.name
+    body.append(h3)
+
+    
+
+
+
+
+
+
   } catch (err) {
     console.log(`error: ${err}`)
+
   } finally {
     console.log(`if successful, response displayed`)
   }
 }
-    // }
-
-    // getSenator()
 
 
-//     const form = document.querySelector('form')
+
+
+
+
+// function showSenator() {
+
+//   form.remove()
+//   h1.innerText = 'Your senator is'
+
+//   const h2 = document.createElement('h2')
+//   h2.innerText = senator.deets.name
+
+//   const h3 = document.createElement('h3')
+//   h3.innerText = senator.deets.party
+
+// }
 //     form.remove()
 
 //     const topicsPage = document.getElementById('topics-page')
