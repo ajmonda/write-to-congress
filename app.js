@@ -5,72 +5,71 @@ const state = document.querySelector('#state')
 const h1 = document.querySelector('h1')
 
 form.addEventListener('submit', async (e) => {
-  // console.log(e) // e(vent) = 'submit'
-  // passing event (submit) to getURL
+
   const url = getURL(e)
-  await writeLetter(url)
+  const senator = await getSenator(url)
+  showSenator(senator)
+  
 })
 
-
-
-
 function getURL(e) {
-
-  // console.log(e) // 'submit'
 
   e.preventDefault()
 
   const address = `${street.value}%20${city.value}%20${state.value}`
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
+
   return url
 }
+// console.log(response.data) 
 
-async function writeLetter(url) {
+// divisions.(key) //	The unique Open Civic Data identifier for this division.
+// // https://docs.opencivicdata.org/en/latest/proposals/0002.html
+// // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
+
+// divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
+
+// offices[].name	// (string) The human-readable name of the office.
+// i need "<state> State Senator"
+
+// offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
+
+// officials[] // here are thepeople
+// // officials[].name // (string) official's name
+// // officials[].emails // (array)	The direct email addresses for the official.
+// // officials[].address // (array of obj) snail mail
+
+//     return response.data
+
+//   } catch (err) {
+//     console.log(`error: ${err}`)
+
+//   } finally {
+//     console.log(`if successful, response displayed`)
+//   }
+// }
+
+async function getSenator(url) {
 
   try {
 
     const response = await axios.get(url)
-
-    // console.log(response.data) 
-
-    // divisions.(key) //	The unique Open Civic Data identifier for this division.
-    // // https://docs.opencivicdata.org/en/latest/proposals/0002.html
-    // // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
-
-    // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
-
-    // offices[].name	// (string) The human-readable name of the office.
-    // i need "<state> State Senator"
-
-    // offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
-
-    // officials[] // here are thepeople
-    // // officials[].name // (string) official's name
-    // // officials[].emails // (array)	The direct email addresses for the official.
-    // // officials[].address // (array of obj) snail mail
-
-
-
     const offices = response.data.offices
-    const officials = response.data.officials
 
-    function getIndex(offices) {
-
+    function getIndex() {
       for (let i = 0; i < offices.length; i++) {
         if (offices[i].name === `${state.value} State Senator`) {
-          const index = offices[i].officialIndices
+          const index = offices[i].officialIndices[0]
+          return index
           // function only returns value if input is CAP, need drop-down menu for state input
-          return index[0]
         } else {
           // if state drop-down menu no need for user error message
           console.log('nope')
         }
       }
     }
-
-    // get senator
-    const deets = officials[getIndex(offices)]
+    const deets = response.data.officials[getIndex()]
 
     const senator = {
       name: deets.name,
@@ -79,33 +78,36 @@ async function writeLetter(url) {
       address: deets.address
     }
 
- 
-    //show senator
-    form.remove()
-    
-    h1.innerText = 'Your senator is'
-    const body = document.querySelector('body')
-
-    const h2 = document.createElement('h2')
-    h2.innerText = senator.name
-    body.append(h2)
-
-    const h3 = document.createElement('h3')
-    h3.innerText = senator.party
-    body.append(h3)
-
-    const button = document.createElement('button')
-    button.innerText = 'OK!'
-    body.append(button)
-
+    return senator
 
   } catch (err) {
     console.log(`error: ${err}`)
-
   } finally {
     console.log(`if successful, response displayed`)
   }
 }
+
+
+
+function showSenator(senator) {
+  form.remove()
+
+  h1.innerText = 'Your senator is'
+  const body = document.querySelector('body')
+
+  const h2 = document.createElement('h2')
+  h2.innerText = senator.name
+  body.append(h2)
+
+  const h3 = document.createElement('h3')
+  h3.innerText = senator.party
+  body.append(h3)
+
+  const button = document.createElement('button')
+  button.innerText = 'OK!'
+  body.append(button)
+}
+
 
 
 
