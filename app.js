@@ -6,7 +6,7 @@
 // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
 
 // offices[].name	// (string) The human-readable name of the office.
-// i need "<state> State Senator"
+// i need "<state> State Senator" and "U.S. Representaive"
 
 // offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
 
@@ -36,26 +36,41 @@ function getURL(e) {
   return url
 }
 
-async function getSenator(url) {
+async function getCongre(url) {
 
   try {
 
     const response = await axios.get(url)
+
+    console.log(response)
+
     const offices = response.data.offices
 
-    function getIndex() {
+    function getSenatorIndex() {
       for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === `${state.value} State Senator`) {
-          const index = offices[i].officialIndices[0]
-          return index
+        if (offices[i].name === `${state.value} State Senator`)
+          const senatorIndex = offices[i].officialIndices[0]
+          return senatorIndex
           // function only returns value if input is CAP, need drop-down menu for state input
         } else {
           // if state drop-down menu no need for user error message
           console.log('nope')
         }
-      }
     }
-    const deets = response.data.officials[getIndex()]
+    
+    function getRepIndex() {
+      for (let i = 0; i < offices.length; i++) {
+        if (offices[i].name === 'U.S. Representative')
+          const repIndex = offices[i].officialIndices[0]
+          return repIndex
+          // function only returns value if input is CAP, need drop-down menu for state input
+        } else {
+          // if state drop-down menu no need for user error message
+          console.log('nope')
+        }
+    }
+    
+    const deets = response.data.officials[getSenatorIndex()]
 
     const senator = {
       name: deets.name,
@@ -88,7 +103,7 @@ function showSenator(senator) {
   h3.innerText = senator.party
   body.append(h3)
 
-  const ok = document.createElement('button')
+  const button = document.createElement('button')
   button.innerText = 'OK!'
   body.append(button)
 }
