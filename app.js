@@ -24,9 +24,8 @@ const h1 = document.querySelector('h1')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
-  await getCongress(url)
-  // const senator = await getSenator(url)
-  // showSenator(senator)
+  const congress = await getCongress(url)
+  showCongress(congress)
 })
 
 function getURL(e) {
@@ -47,60 +46,69 @@ async function getCongress(url) {
 
     const offices = response.data.offices
 
-    function getIndex() {
-      for (let i = 0; i < offices.length; i++) {
-        if (offices[i].name === `${state.value} State Senator`) {
-          const senIndex = offices[i].officialIndices[0]
-          console.log(senIndex)
-        } else if (offices[i].name === 'U.S. Representative') {
-          const repIndex = offices[i].officialIndices[0]
-          console.log(repIndex)
-          // function only returns value if input is CAP, need drop-down menu for state input
-        } else {
-          // if state drop-down menu no need for user error message
-          console.log('nope')
-        }
+    // function getIndex() {
+
+    // store the indices for 'officials' array associated with senator and rep, respectively
+    const indices = []
+
+    for (let i = 0; i < offices.length; i++) {
+      if (offices[i].name === 'U.S. Representative') {
+        indices.push(offices[i].officialIndices[0])
+      } else if (offices[i].name === `${state.value} State Senator`) {
+        indices.push(offices[i].officialIndices[0])
+        // function only returns value if input is CAP, need drop-down menu for state input
+      } else {
+        // if state drop-down menu no need for user error message
+        console.log('nope')
       }
     }
 
-    getIndex()
-    
-  
-      // const deets = response.data.officials[getIndex()]
+    // 0: rep, 1: senator
+    indices.sort()
 
-      // const senator = {
-      //   name: deets.name,
-      //   party: deets.party,
-      //   email: deets.emails[0],
-      //   address: deets.address
-      // }
+    const repIndex = indices[0]
+    const senIndex = indices[1]
 
-      // return senator
+    const rep = response.data.officials[repIndex]
+    const sen = response.data.officials[senIndex]
 
-    } catch (err) {
-      console.log(`error: ${err}`)
-    } finally {
-      console.log(`made it`)
-    }
+    const congress = []
+    congress.push(rep)
+    congress.push(sen)
+
+    return congress
+
+  } catch (err) {
+    console.log(`error: ${err}`)
+  } finally {
+    console.log(`made it`)
   }
-
+}
 
 // don't use body, use "senator-confirm" div
-function showSenator(senator) {
+function showCongress(congress) {
+const confirm = document.getElementById('confirm')
   form.remove()
 
-  h1.innerText = 'Your senator is'
-  const body = document.querySelector('body')
+  h1.innerText = 'Your representatives are'
 
-  const h2 = document.createElement('h2')
-  h2.innerText = senator.name
-  body.append(h2)
+  const repName = document.createElement('h2')
+  repName.innerText = congress[0].name
+  confirm.append(repName)
 
-  const h3 = document.createElement('h3')
-  h3.innerText = senator.party
-  body.append(h3)
+  const repOffice = document.createElement('h3')
+  repOffice.innerText = 'U.S. Representative'
+  confirm.append(repOffice)
+
+  const senName = document.createElement('h2')
+  senName.innerText = congress[1].name
+  confirm.append(senName)
+
+  const senOffice = document.createElement('h3')
+  senOffice.innerText = `${state.value} Senator`
+  confirm.append(senOffice)
 
   const button = document.createElement('button')
   button.innerText = 'OK!'
-  body.append(button)
+  confirm.append(button)
 }
