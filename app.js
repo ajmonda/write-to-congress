@@ -1,15 +1,25 @@
+
+
 const addressForm = document.querySelector('form')
 
-addressForm.addEventListener('submit', async (e) => {
+
+addressForm.addEventListener('submit', (e) => {
+  // console.log(e) // e(vent) = 'submit'
+  // passing event (submit) to getURL
   const url = getURL(e)
-  await writeLetter(url)
+   // async unnecessary as it is last step in function
+  writeLetter(url)
 })
+
 
 const streetForm = document.querySelector('#street')
 const cityForm = document.querySelector('#city')
 const stateForm = document.querySelector('#state')
 
+
 function getURL(e) {
+
+  // console.log(e) // 'submit'
 
   e.preventDefault()
 
@@ -22,11 +32,52 @@ function getURL(e) {
 async function writeLetter(url) {
 
   try {
+
     const response = await axios.get(url)
 
-    const senatorName = response.data.officials[2].name
-    const senatorTitle = response.data.offices[2].name
-    const senatorAddressObj = response.data.officials[2].address[0]
+    // console.log(response.data) --->
+     
+      // divisions.(key) //	The unique Open Civic Data identifier for this division.
+      // // https://docs.opencivicdata.org/en/latest/proposals/0002.html
+      // // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
+      
+      // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
+    
+      // offices[].name	// (string) The human-readable name of the office.
+      // i need "<state> State Senator"
+    
+      // offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
+    
+      // officials[] // here are thepeople
+      // // officials[].name // (string) official's name
+      // // officials[].emails // (array)	The direct email addresses for the official.
+      // // officials[].address // (array of obj) snail mail
+    
+    const offices = response.data.offices
+    const officials = response.data.officials
+
+    function getIndex() {
+      for (let i = 0; i < offices.length; i++) {
+        if (offices[i].name === `${stateForm.value} State Senator`) {
+          const index = offices[i].officialIndices
+          // function only returns value if input is cap, need drop-down menu for state input
+          return index[0]
+        } else {
+          // if state drop-down menu no need for user error message
+            console.log('nope')
+          }
+        }
+      }
+       
+    // keys i need: name(str), emails(arr), address(obj) <-- maybe
+    const senator = officials[getIndex()] 
+
+    const senatorName = senator.name
+    const senatorEmail = senator.emails[0]
+
+    //works
+    console.log(`name ${senatorName}`)
+    console.log(`email ${senatorEmail}`)
 
     const form = document.querySelector('form')
     form.remove()
@@ -112,8 +163,7 @@ async function writeLetter(url) {
       document.querySelector('h1').innerText = 'Edit, sign, copy'
 
       const letter = document.createElement('input')
-      letter.value = `${senatorName} ${senatorTitle} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`
-
+      letter.value = `${senatorName} ${senatorEmail}`
       // log keys in address object:
       for (const key in senatorAddressObj) {
         console.log(senatorAddressObj[key])
