@@ -111,6 +111,8 @@ https://developers.google.com/civic-information
 
 ## Code Snippet
 
+I had oversimplified the API in my mind before starting, and midway through designing I realized I was rendering incorrect data. This set me back nearly a whole day, but with that time I gained literacy in the API, as well as enough practice to compose the code below:
+
 ```js
 async function getCongress(url) {
 
@@ -156,4 +158,9 @@ async function getCongress(url) {
 
 ## Change Log
 
-
+* Added page displaying names of congresspersons before letterbox page
+* Removed page displaying information about selected topics
+* Added representative to data render
+* Added "email" buttons directly on second page
+* Removed address fields
+* Inserted drop-down select for state
