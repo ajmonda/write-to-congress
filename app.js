@@ -157,7 +157,7 @@ function showCongress(congress) {
     compose.append(back)
 
     const h4 = document.createElement('h4')
-    h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a href="http://www.forbreonna.com target="_blank">ForBreonna.com</a>.'
+    h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" hhref="http://www.forbreonna.com>ForBreonna.com</a>.'
     footer.append(h4)
 
 
