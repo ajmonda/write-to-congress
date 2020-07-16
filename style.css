@@ -29,6 +29,7 @@ h1 {
 
 }
 select {
+  font-family: 'Montserrat', sans-serif;
 padding: 10px;
   display: block;
   justify-content: center;
@@ -38,7 +39,7 @@ padding: 10px;
   color: #cfdbd5;
   /* border: none; */
   border-style: solid;
-  border-color: solid black;
+  border-color: #333533;
 
 }
 
@@ -62,15 +63,16 @@ input {
 }
 
 button {
+  font-family: 'Montserrat', sans-serif;
   padding: 10px;
   display: block;
   justify-content: center;
   min-width: 85%;
   margin: 10px auto;
-  background-color: #cfdbd5;
-  color: #333533;
+  background-color: #db3a34;
+  color: white;
   border: none;
-  border-color: solid black;
+  border-color: #db3a34;
   border-style: solid;
   /* border-color: solid black; */
 }
@@ -78,7 +80,7 @@ button {
 h2 {
   
   font-size: 25px;
-  margin-top 30px;
+  
   font-weight: 500;
   line-height: 1;
 }
@@ -125,7 +127,13 @@ footer.h3 {
 
 a {
   color: #db3a34;
+  text-decoration: none;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 a.more {
   display: block;
@@ -138,11 +146,75 @@ a.more {
   font-size: 17px;
   
 }
-© 2020 GitHub, Inc.
-Help
-Support
-API
-Training
-Blog
-About
-GitHub Enterprise Server 2.21.1
+
+
+
+/* https://www.w3schools.com/howto/howto_custom_select.asp */
+
+.custom-select {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+padding: 0;
+max-width: 80%;
+  display: block;
+  justify-content: center;
+  min-width: 85%;
+  margin: 10px auto;
+  background-color: #333533;
+  color: #cfdbd5;
+  /* border: none; */
+  border-style: none;
+  border-color: #333533;
+  padding: 4px 0;
+  
+}
+
+.custom-select select {
+  display: none;  
+}
+
+.select-selected {
+  background-color: #333533;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  /* border: 1px solid transparent; */
+  /* border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; */
+  cursor: pointer;
+}
+
+.select-items {
+  position: absolute;
+  background-color: #333533;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: black;
+}
