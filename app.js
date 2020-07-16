@@ -1,3 +1,5 @@
+
+
 // https://docs.opencivicdata.org/en/latest/proposals/0002.html
 
 // divisions.(key) //	The unique Open Civic Data identifier for this division.
@@ -15,12 +17,17 @@
 // // officials[].emails // (array)	The direct email addresses for the official.
 // // officials[].address // (array of obj) snail mail
 
-
 const form = document.querySelector('form')
-const street = document.querySelector('#street')
-const city = document.querySelector('#city')
+
+// do i even need these?
+// // const street = document.querySelector('#street')
+// // const city = document.querySelector('#city')
+
+// need to get value from drop down selector 
 const state = document.querySelector('#state')
+
 const h1 = document.querySelector('h1')
+const confirm = document.getElementById('confirm')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
@@ -30,7 +37,10 @@ form.addEventListener('submit', async (e) => {
 
 function getURL(e) {
   e.preventDefault()
+
+  // may only need value of state
   const address = `${street.value}%20${city.value}%20${state.value}`
+  
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
   return url
@@ -40,15 +50,14 @@ async function getCongress(url) {
 
   try {
 
+  // data only returned if input value for state is CAP, code in drop down menu to avoid errors
     const response = await axios.get(url)
 
     console.log(response)
 
     const offices = response.data.offices
 
-    // function getIndex() {
-
-    // store the indices for 'officials' array associated with senator and rep, respectively
+    // store the indices for 'officials' array associated with senator and rep
     const indices = []
 
     for (let i = 0; i < offices.length; i++) {
@@ -56,7 +65,6 @@ async function getCongress(url) {
         indices.push(offices[i].officialIndices[0])
       } else if (offices[i].name === `${state.value} State Senator`) {
         indices.push(offices[i].officialIndices[0])
-        // function only returns value if input is CAP, need drop-down menu for state input
       } else {
         // if state drop-down menu no need for user error message
         console.log('nope')
@@ -85,9 +93,7 @@ async function getCongress(url) {
   }
 }
 
-// don't use body, use "senator-confirm" div
 function showCongress(congress) {
-const confirm = document.getElementById('confirm')
   form.remove()
 
   h1.innerText = 'Your representatives are'
@@ -100,6 +106,10 @@ const confirm = document.getElementById('confirm')
   repOffice.innerText = 'U.S. Representative'
   confirm.append(repOffice)
 
+  const emailRep = document.createElement('button')
+  emailRep.innerText = 'EMAIL!'
+  confirm.append(emailRep)
+
   const senName = document.createElement('h2')
   senName.innerText = congress[1].name
   confirm.append(senName)
@@ -108,7 +118,7 @@ const confirm = document.getElementById('confirm')
   senOffice.innerText = `${state.value} Senator`
   confirm.append(senOffice)
 
-  const button = document.createElement('button')
-  button.innerText = 'OK!'
-  confirm.append(button)
+  const emailSen = document.createElement('button')
+  emailSen.innerText = 'EMAIL!'
+  confirm.append(emailSen)
 }

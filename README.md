@@ -77,12 +77,12 @@ https://developers.google.com/civic-information
 
 |  Day | Deliverable | Status
 |---|---| ---|
-|July 10-12| Prompt / Wireframes / Priority Matrix / Timeframes | Incomplete
-|July 13| Project Approval | Incomplete
-|July 13| Core Application Structure (HTML, CSS, etc.) | Incomplete
-|July 14| Pseudocode / actual code | Incomplete
-|July 15| Initial Clickable Model  | Incomplete
-|July 16| MVP | Incomplete
+|July 10-12| Prompt / Wireframes / Priority Matrix / Timeframes | Complete
+|July 13| Project Approval, Gaining literacy of API, Core application structure | Complete
+|July 13| Initial coding, Complete navgation and API integration | Complete
+|July 14| CSS / Styling / Flexbox | Incomplete
+|July 15| MVP | Incomplete
+|July 16| PostMVP | Incomplete
 |July 17| Presentations | Incomplete
 
 ## Priority Matrix
@@ -93,25 +93,67 @@ https://developers.google.com/civic-information
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Researching issue, writing web copy and letter | H | 2hr | | |
-| API navigation | H | 2hrs | | |
-| Form submission & attaching input to API | H | 3hrs | | |
-| API rendering | H | 2hrs | | |
-| Initial mobile DOM layout | H | 3hrs | | |
-| Mobile CSS styling | H | 3hrs | | |
+| Researching issue, writing web copy and letter | H | 2hr | 1hr | 1hr |
+| API navigation | H | 2hrs | 5hrs | 5hrs |
+| Form submission & attaching input to API | H | 3hrs | 5hrs | 5hrs |
+| API rendering | H | 2hrs | 4hrs | |
+| Initial mobile DOM layout | H | 3hrs | 4hrs | |
+| Mobile CSS styling | H | 3hrs | 3 hrs| |
 | Flexbox | H | 2hr | | |
 | Styling for desktop | H | 2hrs | | |
 | Media query | H | 2hrs | | |
 | Dynamic submit/email buttons | M | 2hrs | | |
-| Animation or transition/class toggling | M | 3hrs | | |
-| Randomized relavent nonprofit at bottom | L | 2hrs | | |
-| Resources | L | 1hr | | |
-| Choice of more than one government office, and relavent issue/letter | L | 3hrs | | |
-| Total ||32hrs | | |
+| Animation or transition/class toggling | M | 3hrs | 5 hr| 5hr |
+| Randomized relavent nonprofit at bottom | L | 2hrs | N/A | N/A |
+| Resources | L | 1hr | 1hr | 1hr |
+| Choice of more than one government office, and relavent issue/letter | L | 3hrs | 4hrs | 4hrs |
+| Total ||32hrs | 32hrs | |
 
 ## Code Snippet
 
+```js
+async function getCongress(url) {
 
+  try {
+
+    const response = await axios.get(url)
+
+    console.log(response)
+
+    const offices = response.data.offices
+    const indices = []
+
+    for (let i = 0; i < offices.length; i++) {
+      if (offices[i].name === 'U.S. Representative') {
+        indices.push(offices[i].officialIndices[0])
+      } else if (offices[i].name === `${state.value} State Senator`) {
+        indices.push(offices[i].officialIndices[0])
+      } else {
+        console.log('nope')
+      }
+    }
+
+    indices.sort()
+
+    const repIndex = indices[0]
+    const senIndex = indices[1]
+
+    const rep = response.data.officials[repIndex]
+    const sen = response.data.officials[senIndex]
+
+    const congress = []
+    congress.push(rep)
+    congress.push(sen)
+
+    return congress
+
+  } catch (err) {
+    console.log(`error: ${err}`)
+  } finally {
+    console.log(`made it`)
+  }
+  ```
 
 ## Change Log
+
 
