@@ -24,8 +24,8 @@
 
   <div id="container">
     <header>
-      <h2>Congress must soon reckon with an urgent piece of legislature: <a href="http://wwww.breatheact.org"
-          target="_blank">The BREATHE Act</a>. Enter your adress below to generate letters to your representatives in
+      <h2 id="blurb">Congress must soon reckon with an urgent piece of legislature: <a href="http://wwww.breatheact.org"
+          target="_blank">The BREATHE Act</a>. Enter your adress below to generate letters in
         its defense.</h2>
       <h1>Find your representatives</h1>
     </header>
@@ -34,13 +34,12 @@
 
         <input id="street" type="text" placeholder="STREET" />
         <input id="city" type="text" placeholder="CITY" />
+        <input id="state" type="text" placeholder="STATE" />
 
         <!-- https://www.freeformatter.com/usa-state-list-html-select.html -->
 
         <div class="custom-select">
           <select id="state">
-            <!-- https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
-            <option value="STATE" disabled selected>STATE</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
