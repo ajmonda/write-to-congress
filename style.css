@@ -68,7 +68,7 @@ button {
   display: block;
   justify-content: center;
   min-width: 85%;
-  margin: 10px auto;
+  margin: 35px auto;
   background-color: #db3a34;
   color: white;
   border: none;
@@ -90,7 +90,6 @@ h3 {
   font-family: 'Montserrat', sans-serif;
   
   font-weight: 200;
-  /* text-align: justify; */
   line-height: 1;
   font-size: 20px;
   margin: 0 auto
@@ -154,28 +153,27 @@ a.more {
 .custom-select {
   position: relative;
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-padding: 0;
-max-width: 80%;
+  font-size: 14px;
+  max-width: 80%;
   display: block;
   justify-content: center;
   min-width: 85%;
   margin: 10px auto;
-  background-color: #333533;
-  color: #cfdbd5;
-  /* border: none; */
-  border-style: none;
-  border-color: #333533;
-  padding: 4px 0;
+  background-color:  #e8eddf;
+  color: black;
+  opacity: .8;
+  color: #333533;
   
 }
 
 .custom-select select {
-  display: none;  
+  display: none; 
 }
 
 .select-selected {
-  background-color: #333533;
+  background-color:  #e8eddf;
+  opacity: .8;
+  padding: 0;
 }
 
 .select-selected:after {
@@ -186,25 +184,27 @@ max-width: 80%;
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
+  border-color: black transparent transparent transparent;
+  padding: 0;
 }
 
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
+  border-color: transparent transparent black transparent;
   top: 7px;
 }
 
 .select-items div,.select-selected {
   color: #ffffff;
   padding: 8px 16px;
-  /* border: 1px solid transparent; */
-  /* border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent; */
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
+  color:  black;
+  padding: 10px;
 }
 
 .select-items {
   position: absolute;
-  background-color: #333533;
+  background-color: #e8eddf;
   top: 100%;
   left: 0;
   right: 0;
@@ -217,4 +217,5 @@ max-width: 80%;
 
 .select-items div:hover, .same-as-selected {
   background-color: black;
+  color: #e8eddf;
 }

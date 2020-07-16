@@ -20,8 +20,8 @@
 const form = document.querySelector('form')
 
 // do i even need these?
-// // const street = document.querySelector('#street')
-// // const city = document.querySelector('#city')
+const street = document.querySelector('#street')
+const city = document.querySelector('#city')
 
 // need to get value from drop down selector 
 const state = document.querySelector('#state')
