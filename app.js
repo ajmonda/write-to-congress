@@ -26,6 +26,8 @@ const state= document.querySelector('#state')
 
 const h1 = document.querySelector('h1')
 const confirm = document.getElementById('confirm')
+const compose = document.getElementById('compose')
+const footer = document.querySelector('footer')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
@@ -90,7 +92,7 @@ async function getCongress(url) {
 function showCongress(congress) {
 
   const blurb = document.querySelector('#blurb')
-  blurb.remove()
+  // blurb.remove()
 
   form.remove()
 
@@ -110,7 +112,7 @@ function showCongress(congress) {
   confirm.append(repParty)
 
   const emailRep = document.createElement('button')
-  emailRep.innerText = 'EMAIL!'
+  emailRep.innerText = 'CONTACT'
   confirm.append(emailRep)
 
   const senName = document.createElement('h2')
@@ -118,7 +120,7 @@ function showCongress(congress) {
   confirm.append(senName)
 
   const senOffice = document.createElement('h3')
-  senOffice.innerText = `${state.value} Senator`
+  senOffice.innerText = 'Senator'
   senOffice.style.fontWeight = '500'
   confirm.append(senOffice)
 
@@ -128,7 +130,38 @@ function showCongress(congress) {
 
 
   const emailSen = document.createElement('button')
-  emailSen.innerText = 'EMAIL!'
+  emailSen.innerText = 'CONTACT'
   confirm.append(emailSen)
+
+  emailSen.addEventListener('click', writeLetter = (e) => {
+    e.preventDefault()
+    confirm.remove()
+    h1.innerText = 'Compose, sign, copy'
+
+    const letter = document.createElement('textarea')
+    compose.append(letter)
+    console.log( congress[1].address[0])
+    letter.value = `Dear ${congress[1].name},`
+    console.log(letter.value)
+
+    const email = document.createElement('button')
+    email.innerText = 'EMAIL'
+    compose.append(email)
+
+    const copy = document.createElement('button')
+    copy.innerText = 'COPY'
+    compose.append(copy)
+
+    const back = document.createElement('button')
+    back.innerText = 'GO BACK'
+    compose.append(back)
+
+    const h4 = document.createElement('h4')
+    h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a href="http://www.forbreonna.com target="_blank">ForBreonna.com</a>.'
+    footer.append(h4)
+
+
+  }
+  )
 
 }
