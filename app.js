@@ -22,7 +22,7 @@ const street = document.querySelector('#street')
 const city = document.querySelector('#city')
 
 // need to get value from drop down selector 
-const state = document.querySelector('#state')
+const state= document.querySelector('#state')
 
 const h1 = document.querySelector('h1')
 const confirm = document.getElementById('confirm')

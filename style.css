@@ -1,3 +1,4 @@
+
 body {
   background-color: #F5CB5C;
   color: #242423;
@@ -8,47 +9,27 @@ body {
   display: flex;
   flex-direction: column;
   margin: auto;
-  box-style: border-box;
+  border-style: border-box;
   font-family: 'Baloo Da 2', sans-serif;
   line-height: 1.3;
-  
 }
 header {
   text-align: center;
 }
-
 h1 {
   font-size: 40px;
-  /* font-style: italic; */
-  /* line-height: 1.3; */
   text-align: center;
   margin: 20px;
-  font-family: 'Bebas Neue', cursive;
-
-
-}
-select {
-  font-family: 'Montserrat', sans-serif;
-padding: 10px;
-  display: block;
-  justify-content: center;
-  min-width: 85%;
-  margin: 10px;
-  background-color: #333533;
-  color: #cfdbd5;
-  /* border: none; */
-  border-style: solid;
-  border-color: #333533;
-
-}
-
-#address-form {
-  display: block;
-  
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 ::placeholder {
   color: #333533;
+}
+
+#address-form {
+  font-family: 'Montserrat', sans-serif;
+  justify-content: center;
 }
 
 input {
@@ -61,26 +42,40 @@ input {
   border: none;
 }
 
+select {
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  padding: 10px;
+  margin: 15px auto;
+  background-color:  #e8eddf;
+  opacity: .8;
+  color: #333533;
+  border: none;
+  min-width: 80%;
+} 
+
+/* https://www.w3schools.com/howto/howto_custom_select.asp */
+.select-selected {
+  display: none;
+}
+.select-hide {
+  display: none;
+}
+
 button {
   font-family: 'Montserrat', sans-serif;
   padding: 10px;
   display: block;
-  justify-content: center;
-  min-width: 85%;
+  min-width: 80%;
   margin: 40px auto;
   background-color: #db3a34;
   color: white;
   border: none;
-  border-color: #db3a34;
-  border-style: solid;
-  border: 5px;
-  /* border-color: solid black; */
 }
 
 h2 {
   
   font-size: 25px;
-  /* margin-bottom: 30px; */
   font-weight: 500;
   line-height: 1;
 }
@@ -88,37 +83,12 @@ h2 {
 h3 {
   
   font-family: 'Montserrat', sans-serif;
-  
   font-weight: 200;
   line-height: 1;
   font-size: 20px;
   margin: 0 auto
 }
 
-/* #topics-page {
-  max-width: 100%;
-  border-style: solid;
-  border-color: #e8eddf;
-  background-color: #e8eddf;
-} */
-
-.topics {
-  margin-top: 10px;
-  margin-bottom: 45px;
-  padding: 0;
-  /* background-color: #e8eddf; */
-}
-
-button.topic-button {
-  box-style: border-box;
-  display: flex;
-  /* flex-direction: column; */
-  padding: 10px;
-  min-width: 80%;
-  /* margin: 10px 0; */
-  min-width: 100%;
-  background-color: #db3a34;
-}
 
 footer.h3 {
   font-weight: 500;
@@ -131,93 +101,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-
-a.more {
-  display: block;
-  margin: 0;
-  /* text-align: right; */
-  position: relative;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  line-height: 1;
-  font-size: 17px;
-  
-}
-
-
-
-/* https://www.w3schools.com/howto/howto_custom_select.asp */
-
-.custom-select {
-  position: relative;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  max-width: 80%;
-  display: block;
-  justify-content: center;
-  min-width: 85%;
-  margin: 10px auto;
-  background-color:  #e8eddf;
-  color: black;
-  opacity: .8;
-  color: #333533;
-  
-}
-
-.custom-select select {
-  display: none; 
-}
-
-.select-selected {
-  background-color:  #e8eddf;
-  opacity: .8;
-  padding: 0;
-}
-
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: black transparent transparent transparent;
-  padding: 0;
-}
-
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent black transparent;
-  top: 7px;
-}
-
-.select-items div,.select-selected {
-  /* color: #ffffff; */
-  padding: 8px 16px;
-  /* border: 1px solid transparent; */
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  color:  black;
-  padding: 10px;
-}
-
-.select-items {
-  position: absolute;
-  background-color: #e8eddf;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-
-}
-
-.select-hide {
-  display: none;
-}
-
-.select-items div:hover, .same-as-selected {
-  background-color: black;
-  color: #e8eddf;
 }

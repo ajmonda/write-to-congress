@@ -34,12 +34,12 @@
 
         <input id="street" type="text" placeholder="STREET" />
         <input id="city" type="text" placeholder="CITY" />
-        <input id="state" type="text" placeholder="STATE" />
 
         <!-- https://www.freeformatter.com/usa-state-list-html-select.html -->
 
-        <div class="custom-select">
           <select id="state">
+      <!-- https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+            <option value="" disabled selected>STATE</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -92,16 +92,10 @@
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
           </select>
-        </div>
-        <button>SUBMIT</button>
+        
+        <button id="submit">SUBMIT</button>
       </form>
       <div id="confirm"></div>
-      <div id="topics">
-        <div id="breathe-div" class="topics"></div>
-        <div id="extend" class="topics"></div>
-        <div id="number-three" class="topics"></div>
-      </div>
-      <div id="final"></div>
     </main>
 
 
