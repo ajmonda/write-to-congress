@@ -40,7 +40,16 @@ input {
   min-width: 80%;
   background-color: #e8eddf;
   border: none;
+  resize: none;
 }
+
+input:focus {
+  
+ outline: none;
+
+}
+
+
 
 select {
   font-family: 'Montserrat', sans-serif;
