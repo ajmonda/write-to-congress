@@ -110,10 +110,17 @@ function showCongress(congress) {
     contactButton.innerText = 'CONTACT'
     contactButton.id = `${member['name']}`
 
+    // contactButton.addEventListener('click', (e) => {
+      // e.preventDefault()
+      // writeLetter(member)
+
+    // })
+
     repInfo.append(contactButton)
 
     function isLink(member) {
       const name = document.createElement('h2')
+
       if (member['urls']) {
         const link = document.createElement('a')
         link.href = member.urls[0]
@@ -124,31 +131,33 @@ function showCongress(congress) {
       }
       return name
     }
-    
-    const contactRep = document.getElementById(`${congress[0].name}`)
-    contactRep.addEventListener('click', (e) => {
+  })
 
-      e.preventDefault()
-      confirm.remove()
-      writeLetter(congress)
-
-    })
-
-    // if(document.getElementById('button').clicked == true)
-// { writeLetter(pass correspomding member here)
-
-  });
 }
 
-function writeLetter(congress) {
+function whichButton(congress) {
 
-  // congress.forEach(member => {
+  for (let i = 0; i < congresss.length; i++) {
 
-    h1.innerText = 'Compose your letter'
+    const cb = document.getElementById(`${congress.name[i]}`)
+    cb.addEventListener('click', writeLetter(member))
+    const member = congress[i]
+  }
+
+  return 
+
+  }
+
+
+  function writeLetter(whichButton(congress)) {
+
+    confirm.remove()
 
     const letter = document.createElement('textarea')
 
-    letter.value = `${congress[0].name}\n${congress[0].address['line_1']}\n${congress[0].address['city']}, ${congress[0].address['state']} ${congress[0].address['zip']}\n\nDear ${congress[0].name},`
+    letter.value = `Dear ${congress[i]},`
+
+    // // // ${member.name}\n${member.address['line_1']}\n${member.address['city']}, ${member.address['state']} ${member.address['zip']}\n\n
 
     const email = document.createElement('button')
     const copy = document.createElement('button')
@@ -159,21 +168,16 @@ function writeLetter(congress) {
     back.innerText = 'BACK'
 
     copy.addEventListener('click', function copyLetter() {
+
       letter.select()
       document.execCommand('copy')
       alert('Copied!')
 
-    // })
+    })
 
     compose.append(letter)
     compose.append(email)
     compose.append(copy)
 
-  })
-}
-
-//     const h4 = document.createElement('h4')
-//     h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
-//     footer.append(h4)
-//   }
-//   
+    }
+  
