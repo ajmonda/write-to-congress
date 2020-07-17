@@ -177,16 +177,20 @@ function writeLetter(congress) {
   back.innerText = 'BACK'
   email.innerText = 'EMAIL'
 
-  function isEmail(congress) {
-    const email = document.createElement('button')
-    if (congress.emails) {
+  // until email button functional
+  email.style.opacity = '0.5'
+
+
+  // function isEmail(congress) {
+  //   const email = document.createElement('button')
+  //   if (congress.emails) {
 
       
-    } else {
-      email.style.opacity = '0.5'
-    }
-    return email
-  }
+  //   } else {
+  //     email.style.opacity = '0.5'
+  //   }
+  //   return email
+  // }
 
   copy.addEventListener('click', function copyLetter() {
     letter.select()

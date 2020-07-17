@@ -63,12 +63,6 @@ input {
   box-sizing: border-box;
 
 }
-/* 
-input:focus {
-  
- outline: none;
-
-} */
 
 
 
@@ -98,20 +92,17 @@ button {
   padding: 10px;
   /* display: block; */
   min-width: 80%;
-  margin: 5px 0;
+  margin: 20px 0 10px 0;
   background-color: #db3a34;
   color: white;
   border: none;
   box-sizing: border-box;
+  justify-content: center;
+  position: relative;
 }
 
 #submit {
   margin: 40px auto;
-}
-
-.contact {
-  margin-bottom: 30px;
-  margin-top: 15px;
 }
 
 h2 {
