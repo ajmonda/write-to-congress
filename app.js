@@ -169,13 +169,24 @@ function writeLetter(congress) {
 
   letter.value = `The Honorable ${congress.name}\n${congress.address[0].line1}\n${congress.address[0].city}, ${congress.address[0].state} ${congress.address[0].zip}\n\nDear ${congress.office}:`
 
-  const email = document.createElement('button')
   const copy = document.createElement('button')
   const back = document.createElement('button')
+  const email = isEmail(congress)
 
-  email.innerText = 'EMAIL'
   copy.innerText = 'COPY'
   back.innerText = 'BACK'
+  email.innerText = 'EMAIL'
+
+  function isEmail(congress) {
+    const email = document.createElement('button')
+    if (congress.emails) {
+
+      
+    } else {
+      email.style.opacity = '0.5'
+    }
+    return email
+  }
 
   copy.addEventListener('click', function copyLetter() {
     letter.select()
