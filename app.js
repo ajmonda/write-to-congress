@@ -56,6 +56,8 @@ async function getCongress(url) {
     const response = await axios.get(url)
     const offices = response.data.offices
 
+    console.log(response.data)
+    
     //retrieve index of rep and sen and store as array
     const indices = []
 
