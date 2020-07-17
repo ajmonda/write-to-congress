@@ -100,154 +100,95 @@ async function getCongress(url) {
 // this function should start here
 function showCongress(congress) {
 
+  console.log(congress)
+
   h1.innerText = 'Your representatives are'
 
-  function printCongress(member) {
-    for (let n = 0; member.length < i; i++) {
+  congress.forEach(member => {
 
-      const name = document.createElement('h2')
-      const office = document.createElement('h3')
-      const party = document.createElement('h3')
-      const contact = document.createElement('button')
+    console.log(member.name)
+    const name = document.createElement('h2')
+    const party = document.createElement('h3')
+    const contact = document.createElement('button')
+    contact.classList.add('contact')
 
-      
-    }
-  }
+    name.innerText = member.name
+    party.innerText = member.party
 
-
-
-
-  // name congress[i].name // congress[i].urls[0] <-- if/then
-  // office congress[i].office
-  // party congress[i].party
-
-  //contact button to next div
-
-  //////
-
-  document.createElement('h2')
-  // append name
-  // document.createElement('h3')
-  // append office
-  // append party
-  // contact button
-
-
-  congress.forEach(member => function showCongress(member) {
-
-  })
-
-  //////////
-
-  // ++++++++++++++++++++++++++++++++ FUNCTION TO RENDER EACH PERSON
-  // // representative
-  const repName = document.createElement('h2')
-  const repLink = document.createElement('a')
-
-  repLink.href = congress[0].urls[0]
-  repLink.innerText = congress[0].name
-  repName.append(repLink)
-  confirm.append(repName)
-
-  const repOffice = document.createElement('h3')
-  repOffice.innerText = 'U.S. Representative'
-  repOffice.style.fontWeight = '500'
-  confirm.append(repOffice)
-
-  const repParty = document.createElement('h3')
-  repParty.innerText = congress[0].party
-  confirm.append(repParty)
-
-  const mailRep = document.createElement('button')
-  mailRep.innerText = 'CONTACT'
-  mailRep.classList.add('contact')
-  confirm.append(mailRep)
-
-
-
-  // // senator
-  const senOffice = document.createElement('h3')
-  senOffice.innerText = 'Senator'
-  senOffice.style.fontWeight = '500'
-  confirm.append(senOffice)
-
-  const senParty = document.createElement('h3')
-  senParty.innerText = congress[1].party
-  confirm.append(senParty)
-
-  const mailSen = document.createElement('button')
-  mailSen.innerText = 'CONTACT'
-  mailSen.classList.add('contact')
-  confirm.append(mailSen)
-
-  // // // senator button
-  mailSen.addEventListener('click', writeLetter = (e) => {
-    e.preventDefault()
-    confirm.remove()
-    h1.innerText = 'Compose your letter'
-
-    const letter = document.createElement('textarea')
-    compose.append(letter)
-    console.log(congress[1].address[0])
-    letter.value = `${congress[1].name}\n${congress[1].address[0].line1}\n${congress[1].address[0].city}, ${congress[1].address[0].state} ${congress[1].address[0].zip}\n\nDear ${congress[1].name},`
-
-    const email = document.createElement('button')
-    email.innerText = 'EMAIL'
-    compose.append(email)
-
-    email.action = congress[1].emails[0]
-
-    const copy = document.createElement('button')
-    copy.innerText = 'COPY'
-    compose.append(copy)
-
-    copy.addEventListener('click', copyLetter = (e) => {
-      letter.select()
-      document.execCommand('copy')
-      alert('Copied!')
-    })
-
-
-
-    const back = document.createElement('button')
-    back.innerText = 'GO BACK'
-    compose.append(back)
-
-    const h4 = document.createElement('h4')
-    h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
-    footer.append(h4)
-  }
-  )
-
-  // // // representative button
-  mailRep.addEventListener('click', writeLetter = (e) => {
-    e.preventDefault()
-    confirm.remove()
-    h1.innerText = 'Compose your letter'
-
-    const letter = document.createElement('textarea')
-    compose.append(letter)
-
-    letter.value = `${congress[0].name}\n${congress[0].address[0].line1}\n${congress[0].address[0].city}, ${congress[0].address[0].state} ${congress[0].address[0].zip}\n\nDear ${congress[0].name},`
-
-    const copy = document.createElement('button')
-    copy.innerText = 'COPY'
-    compose.append(copy)
-
-    copy.addEventListener('click', copyLetter = (e) => {
-      letter.select()
-      document.execCommand('copy')
-      alert('Copied!')
-    })
-
-
-    const back = document.createElement('button')
-    back.innerText = 'GO BACK'
-    compose.append(back)
-
-    const h4 = document.createElement('h4')
-    h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
-    footer.append(h4)
-  }
-  )
+    repInfo.append(name)
+    repInfo.append(party)
+  });
 }
+
+
+//   // // // senator button
+//   mailSen.addEventListener('click', writeLetter = (e) => {
+//     e.preventDefault()
+//     confirm.remove()
+//     h1.innerText = 'Compose your letter'
+
+//     const letter = document.createElement('textarea')
+//     compose.append(letter)
+//     console.log(congress[1].address[0])
+//     letter.value = `${congress[1].name}\n${congress[1].address[0].line1}\n${congress[1].address[0].city}, ${congress[1].address[0].state} ${congress[1].address[0].zip}\n\nDear ${congress[1].name},`
+
+//     const email = document.createElement('button')
+//     email.innerText = 'EMAIL'
+//     compose.append(email)
+
+//     email.action = congress[1].emails[0]
+
+//     const copy = document.createElement('button')
+//     copy.innerText = 'COPY'
+//     compose.append(copy)
+
+//     copy.addEventListener('click', copyLetter = (e) => {
+//       letter.select()
+//       document.execCommand('copy')
+//       alert('Copied!')
+//     })
+
+
+
+//     const back = document.createElement('button')
+//     back.innerText = 'GO BACK'
+//     compose.append(back)
+
+//     const h4 = document.createElement('h4')
+//     h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
+//     footer.append(h4)
+//   }
+//   )
+
+//   // // // representative button
+//   mailRep.addEventListener('click', writeLetter = (e) => {
+//     e.preventDefault()
+//     confirm.remove()
+//     h1.innerText = 'Compose your letter'
+
+//     const letter = document.createElement('textarea')
+//     compose.append(letter)
+
+//     letter.value = `${congress[0].name}\n${congress[0].address[0].line1}\n${congress[0].address[0].city}, ${congress[0].address[0].state} ${congress[0].address[0].zip}\n\nDear ${congress[0].name},`
+
+//     const copy = document.createElement('button')
+//     copy.innerText = 'COPY'
+//     compose.append(copy)
+
+//     copy.addEventListener('click', copyLetter = (e) => {
+//       letter.select()
+//       document.execCommand('copy')
+//       alert('Copied!')
+//     })
+
+
+//     const back = document.createElement('button')
+//     back.innerText = 'GO BACK'
+//     compose.append(back)
+
+//     const h4 = document.createElement('h4')
+//     h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
+//     footer.append(h4)
+//   }
+//   )
+// // }
