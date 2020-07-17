@@ -1,9 +1,5 @@
 
-
 // https://docs.opencivicdata.org/en/latest/proposals/0002.html
-
-// divisions.(key) //	The unique Open Civic Data identifier for this division.
-// // 'ocd-division/country:<country_code>(/<type>:<type_id>)*'
 
 // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
 
@@ -16,16 +12,18 @@
 // // officials[].emails // (array)	The direct email addresses for the official.
 // // officials[].address // (array of obj) snail mail
 
+const h1 = document.querySelector('h1')
+const footer = document.querySelector('footer')
+
 const form = document.querySelector('form')
 const street = document.querySelector('#street')
 const city = document.querySelector('#city')
 const state = document.querySelector('#state')
-const h1 = document.querySelector('h1')
+
 const confirm = document.getElementById('confirm')
-const compose = document.getElementById('compose')
-const footer = document.querySelector('footer')
 const repInfo = document.getElementById('rep-info')
 const senInfo = document.getElementById('sen-info')
+const compose = document.getElementById('compose')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
@@ -33,7 +31,7 @@ form.addEventListener('submit', async (e) => {
   form.remove()
   showCongress(congress)
   // event listener for contact buttons
-  //
+  // 
 
   //
 })
@@ -95,9 +93,6 @@ async function getCongress(url) {
   }
 }
 
-// vvvvvv scope and dry vvvvvv
-
-// this function should start here
 function showCongress(congress) {
 
   console.log(congress)
@@ -106,20 +101,35 @@ function showCongress(congress) {
 
   congress.forEach(member => {
 
-    console.log(member.name)
-    const name = document.createElement('h2')
-    const party = document.createElement('h3')
-    const contact = document.createElement('button')
-    contact.classList.add('contact')
+    const name = isLink(member)
 
-    name.innerText = member.name
+    const party = document.createElement('h3')
     party.innerText = member.party
 
     repInfo.append(name)
     repInfo.append(party)
+
+    const contact = document.createElement('button')
+    contact.innerText = 'CONTACT'
+    contact.classList.add('contact')
+
+    repInfo.append(contact)
+
+    function isLink(member) {
+      const name = document.createElement('h2')
+      if (member['urls']) {
+        const link = document.createElement('a')
+        link.href = member.urls[0]
+        link.innerText = member.name
+        name.append(link)
+      } else {
+        name.innerText = member.name
+      }
+      return name
+    }
+
   });
 }
-
 
 //   // // // senator button
 //   mailSen.addEventListener('click', writeLetter = (e) => {

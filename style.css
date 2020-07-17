@@ -126,7 +126,7 @@ h2 {
 h3 {
   
   font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+  font-weight: 700;
   line-height: 1;
   font-size: 20px;
   margin: 0 50% 0 0;
@@ -141,7 +141,7 @@ footer.h3 {
 
 a {
   color: #db3a34;
-  text-decoration: none;
+  /* text-decoration: none; */
 }
 
 a:hover {
