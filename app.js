@@ -17,22 +17,25 @@
 // // officials[].address // (array of obj) snail mail
 
 const form = document.querySelector('form')
-
 const street = document.querySelector('#street')
 const city = document.querySelector('#city')
-
-// need to get value from drop down selector 
-const state= document.querySelector('#state')
-
+const state = document.querySelector('#state')
 const h1 = document.querySelector('h1')
 const confirm = document.getElementById('confirm')
 const compose = document.getElementById('compose')
 const footer = document.querySelector('footer')
+const repInfo = document.getElementById('rep-info')
+const senInfo = document.getElementById('sen-info')
 
 form.addEventListener('submit', async (e) => {
   const url = getURL(e)
   const congress = await getCongress(url)
+  form.remove()
   showCongress(congress)
+  // event listener for contact buttons
+  //
+
+  //
 })
 
 function getURL(e) {
@@ -43,6 +46,9 @@ function getURL(e) {
 
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
+
+  console.log(url)
+
   return url
 
 }
@@ -53,6 +59,8 @@ async function getCongress(url) {
 
     const response = await axios.get(url)
     const offices = response.data.offices
+
+    console.log(response.data)
 
     const indices = []
 
@@ -77,6 +85,7 @@ async function getCongress(url) {
     const congress = []
     congress.push(rep)
     congress.push(sen)
+
     return congress
 
   } catch (err) {
@@ -86,15 +95,51 @@ async function getCongress(url) {
   }
 }
 
-// yo dry this up:
+// vvvvvv scope and dry vvvvvv
 
+// this function should start here
 function showCongress(congress) {
-
-  form.remove()
 
   h1.innerText = 'Your representatives are'
 
+  function printCongress(member) {
+    for (let n = 0; member.length < i; i++) {
 
+      const name = document.createElement('h2')
+      const office = document.createElement('h3')
+      const party = document.createElement('h3')
+      const contact = document.createElement('button')
+
+      
+    }
+  }
+
+
+
+
+  // name congress[i].name // congress[i].urls[0] <-- if/then
+  // office congress[i].office
+  // party congress[i].party
+
+  //contact button to next div
+
+  //////
+
+  document.createElement('h2')
+  // append name
+  // document.createElement('h3')
+  // append office
+  // append party
+  // contact button
+
+
+  congress.forEach(member => function showCongress(member) {
+
+  })
+
+  //////////
+
+  // ++++++++++++++++++++++++++++++++ FUNCTION TO RENDER EACH PERSON
   // // representative
   const repName = document.createElement('h2')
   const repLink = document.createElement('a')
@@ -118,14 +163,8 @@ function showCongress(congress) {
   mailRep.classList.add('contact')
   confirm.append(mailRep)
 
-  const senName = document.createElement('h2')
-  const senLink = document.createElement('a')
 
-  senLink.href = congress[1].urls[0]
-  senLink.innerText = congress[1].name
-  senName.append(senLink)
-  confirm.append(senName)
-  
+
   // // senator
   const senOffice = document.createElement('h3')
   senOffice.innerText = 'Senator'
@@ -141,7 +180,7 @@ function showCongress(congress) {
   mailSen.classList.add('contact')
   confirm.append(mailSen)
 
-  // // senator button
+  // // // senator button
   mailSen.addEventListener('click', writeLetter = (e) => {
     e.preventDefault()
     confirm.remove()
@@ -156,6 +195,8 @@ function showCongress(congress) {
     email.innerText = 'EMAIL'
     compose.append(email)
 
+    email.action = congress[1].emails[0]
+
     const copy = document.createElement('button')
     copy.innerText = 'COPY'
     compose.append(copy)
@@ -165,8 +206,8 @@ function showCongress(congress) {
       document.execCommand('copy')
       alert('Copied!')
     })
-  
-  
+
+
 
     const back = document.createElement('button')
     back.innerText = 'GO BACK'
@@ -178,7 +219,7 @@ function showCongress(congress) {
   }
   )
 
-  // // representative button
+  // // // representative button
   mailRep.addEventListener('click', writeLetter = (e) => {
     e.preventDefault()
     confirm.remove()
@@ -186,16 +227,19 @@ function showCongress(congress) {
 
     const letter = document.createElement('textarea')
     compose.append(letter)
-  
+
     letter.value = `${congress[0].name}\n${congress[0].address[0].line1}\n${congress[0].address[0].city}, ${congress[0].address[0].state} ${congress[0].address[0].zip}\n\nDear ${congress[0].name},`
 
     const copy = document.createElement('button')
     copy.innerText = 'COPY'
     compose.append(copy)
 
-    const email = document.createElement('button')
-    email.innerText = 'EMAIL'
-    compose.append(email)
+    copy.addEventListener('click', copyLetter = (e) => {
+      letter.select()
+      document.execCommand('copy')
+      alert('Copied!')
+    })
+
 
     const back = document.createElement('button')
     back.innerText = 'GO BACK'

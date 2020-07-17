@@ -60,14 +60,15 @@ input {
   background-color: #e8eddf;
   border: none;
   resize: none;
+  box-sizing: border-box;
 
 }
-
+/* 
 input:focus {
   
  outline: none;
 
-}
+} */
 
 
 
