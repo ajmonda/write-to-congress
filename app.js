@@ -28,8 +28,6 @@ function getURL(e) {
   const key = `AIzaSyC6r1AUum2tYX_mkkG_GNAJbbNlHq4s-ek`
   const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${key}&address=${address}`
 
-  console.log(url)
-
   return url
 
 }
@@ -55,7 +53,7 @@ async function getCongress(url) {
 
     const response = await axios.get(url)
     const offices = response.data.offices
-
+    
     console.log(response.data)
     
     //retrieve index of rep and sen and store as array
