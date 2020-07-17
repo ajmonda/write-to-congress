@@ -4,11 +4,10 @@ const footer = document.querySelector('footer')
 const form = document.querySelector('form')
 const street = document.querySelector('#street')
 const city = document.querySelector('#city')
-const state = document.querySelector('#state')
+const state = document.querySelector('#state') // need drop down
 
 const confirm = document.getElementById('confirm')
 const repInfo = document.getElementById('rep-info')
-const senInfo = document.getElementById('sen-info')
 const compose = document.getElementById('compose')
 
 form.addEventListener('submit', async (e) => {
@@ -50,6 +49,8 @@ function getURL(e) {
 
 async function getCongress(url) {
 
+  // need invalid error
+
   try {
 
     const response = await axios.get(url)
@@ -64,7 +65,7 @@ async function getCongress(url) {
       } else if (offices[i].name === `${state.value} State Senator`) {
         indices.push(offices[i].officialIndices[0])
       } else {
-        console.log('something bad')
+        console.log('nope')
       }
     }
 
@@ -112,6 +113,7 @@ function showCongress(congress) {
     repInfo.append(party)
 
     //determine if object has website key and create link
+    // no conditional to remove generic u.s. senate page
     function isLink(member) {
       const name = document.createElement('h2')
       if (member['urls']) {
@@ -131,7 +133,7 @@ function showCongress(congress) {
 
 }
 
-// assign specific properties to buttons to generate custom letter headers
+// assign specific IDs to buttons to generate custom letter heads
 function whichButton(congress) {
 
   for (let i = 0; i < congress.length; i++) {
