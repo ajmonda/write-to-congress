@@ -1,16 +1,3 @@
-// https://docs.opencivicdata.org/en/latest/proposals/0002.html
-
-// divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
-
-// offices[].name	// (string) The human-readable name of the office.
-
-// offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
-
-// officials[] // here are thepeople
-// // officials[].name // (string) official's name
-// // officials[].emails // (array)	The direct email addresses for the official.
-// // officials[].address // (array of obj) snail mail
-
 const h1 = document.querySelector('h1')
 const footer = document.querySelector('footer')
 
@@ -48,6 +35,19 @@ function getURL(e) {
 
 }
 
+// https://docs.opencivicdata.org/en/latest/proposals/0002.html
+
+// divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
+
+// offices[].name	// (string) The human-readable name of the office.
+
+// offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
+
+// officials[] // here are thepeople
+// // officials[].name // (string) official's name
+// // officials[].emails // (array)	The direct email addresses for the official.
+// // officials[].address // (array of obj) snail mail
+
 async function getCongress(url) {
 
   try {
@@ -55,8 +55,7 @@ async function getCongress(url) {
     const response = await axios.get(url)
     const offices = response.data.offices
 
-    console.log(response.data)
-
+    //retrieve index of rep and sen and store as array
     const indices = []
 
     for (let i = 0; i < offices.length; i++) {
@@ -65,7 +64,7 @@ async function getCongress(url) {
       } else if (offices[i].name === `${state.value} State Senator`) {
         indices.push(offices[i].officialIndices[0])
       } else {
-        console.log('nope')
+        console.log('something bad')
       }
     }
 
@@ -112,6 +111,7 @@ function showCongress(congress) {
     repInfo.append(office)
     repInfo.append(party)
 
+    //determine if object has website key and create link
     function isLink(member) {
       const name = document.createElement('h2')
       if (member['urls']) {
@@ -131,6 +131,7 @@ function showCongress(congress) {
 
 }
 
+// assign specific properties to buttons to generate custom letter headers
 function whichButton(congress) {
 
   for (let i = 0; i < congress.length; i++) {
@@ -170,22 +171,19 @@ function writeLetter(congress) {
   letter.value = `The Honorable ${congress.name}\n${congress.address[0].line1}\n${congress.address[0].city}, ${congress.address[0].state} ${congress.address[0].zip}\n\nDear ${congress.office}:`
 
   const copy = document.createElement('button')
-  const back = document.createElement('button')
-  const email = isEmail(congress)
+  // const back = document.createElement('button')
+  // const email = isEmail(congress)
 
   copy.innerText = 'COPY'
-  back.innerText = 'BACK'
-  email.innerText = 'EMAIL'
-
-  // until email button functional
-  email.style.opacity = '0.5'
+  // back.innerText = 'BACK'
+  // email.innerText = 'EMAIL'
 
 
   // function isEmail(congress) {
   //   const email = document.createElement('button')
   //   if (congress.emails) {
 
-      
+
   //   } else {
   //     email.style.opacity = '0.5'
   //   }
@@ -200,8 +198,9 @@ function writeLetter(congress) {
   })
 
   compose.append(letter)
-  compose.append(email)
   compose.append(copy)
+  // compose.append(email)
+  // compose.append(back)
 
   const h4 = document.createElement('h4')
   h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
