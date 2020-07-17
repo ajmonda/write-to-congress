@@ -95,7 +95,7 @@ async function getCongress(url) {
 
 function showCongress(congress) {
 
-  h1.innerText = ''
+  h1.innerText = 'Select recipient'
 
   congress.forEach(member => {
 
@@ -161,38 +161,34 @@ function writeLetter(congress) {
 
   confirm.remove()
 
-  // congress.forEach(member => {
+  h1.innerText = 'Compose your letter'
 
-    h1.innerText = 'Compose your letter'
+  const letter = document.createElement('textarea')
 
-    const letter = document.createElement('textarea')
+  console.log(congress)
 
-  letter.value = `${congress.address.line_1}\n${congress.address.city}, ${congress.address.state} ${congress.address.zip}\n\nDear ${congress.name},`
+  letter.value = `The Honorable ${congress.name}\n${congress.address[0].line1}\n${congress.address[0].city}, ${congress.address[0].state} ${congress.address[0].zip}\n\nDear ${congress.office}:`
 
-    const email = document.createElement('button')
-    const copy = document.createElement('button')
-    const back = document.createElement('button')
+  const email = document.createElement('button')
+  const copy = document.createElement('button')
+  const back = document.createElement('button')
 
-    email.innerText = 'EMAIL'
-    copy.innerText = 'COPY'
-    back.innerText = 'BACK'
+  email.innerText = 'EMAIL'
+  copy.innerText = 'COPY'
+  back.innerText = 'BACK'
 
-    copy.addEventListener('click', function copyLetter() {
-      letter.select()
-      document.execCommand('copy')
-      alert('Copied!')
+  copy.addEventListener('click', function copyLetter() {
+    letter.select()
+    document.execCommand('copy')
+    alert('Copied!')
 
-    })
+  })
 
-    compose.append(letter)
-    compose.append(email)
-    compose.append(copy)
+  compose.append(letter)
+  compose.append(email)
+  compose.append(copy)
 
-  // })
+  const h4 = document.createElement('h4')
+  h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
+  footer.append(h4)
 }
-
-//     const h4 = document.createElement('h4')
-//     h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
-//     footer.append(h4)
-//   }
-//   
