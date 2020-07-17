@@ -1,4 +1,3 @@
-
 // https://docs.opencivicdata.org/en/latest/proposals/0002.html
 
 // divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
@@ -29,7 +28,6 @@ form.addEventListener('submit', async (e) => {
 
   const url = getURL(e)
   const congress = await getCongress(url)
-  console.log(congress)
   form.remove()
   showCongress(congress)
 
@@ -79,6 +77,9 @@ async function getCongress(url) {
     const rep = response.data.officials[repIndex]
     const sen = response.data.officials[senIndex]
 
+    rep.office = 'Representative'
+    sen.office = `Senator`
+
     const congress = []
     congress.push(rep)
     congress.push(sen)
@@ -94,33 +95,25 @@ async function getCongress(url) {
 
 function showCongress(congress) {
 
-  h1.innerText = 'Your representatives are'
+  h1.innerText = ''
 
   congress.forEach(member => {
 
     const name = isLink(member)
 
+    const office = document.createElement('h3')
+    office.innerText = member.office
+
     const party = document.createElement('h3')
     party.innerText = member.party
+    party.style.fontWeight = '200'
 
     repInfo.append(name)
+    repInfo.append(office)
     repInfo.append(party)
-
-    const contactButton = document.createElement('button')
-    contactButton.innerText = 'CONTACT'
-    contactButton.id = `${member['name']}`
-
-    // contactButton.addEventListener('click', (e) => {
-      // e.preventDefault()
-      // writeLetter(member)
-
-    // })
-
-    repInfo.append(contactButton)
 
     function isLink(member) {
       const name = document.createElement('h2')
-
       if (member['urls']) {
         const link = document.createElement('a')
         link.href = member.urls[0]
@@ -131,33 +124,50 @@ function showCongress(congress) {
       }
       return name
     }
-  })
+
+  });
+
+  whichButton(congress)
 
 }
 
 function whichButton(congress) {
 
-  for (let i = 0; i < congresss.length; i++) {
-
-    const cb = document.getElementById(`${congress.name[i]}`)
-    cb.addEventListener('click', writeLetter(member))
-    const member = congress[i]
+  for (let i = 0; i < congress.length; i++) {
+    const contactButton = document.createElement('button')
+    contactButton.id = `${congress[i].office}`
+    contactButton.innerText = `Contact ${congress[i].office}`
+    repInfo.append(contactButton)
   }
 
-  return 
+  const contactRep = document.getElementById('Representative')
+  const contactSen = document.getElementById('Senator')
 
-  }
+  contactRep.addEventListener('click', (e) => {
+    e.preventDefault()
+    writeLetter(congress[0])
 
+  })
 
-  function writeLetter(whichButton(congress)) {
+  contactSen.addEventListener('click', (e) => {
+    e.preventDefault()
+    writeLetter(congress[1])
 
-    confirm.remove()
+  })
+
+}
+
+function writeLetter(congress) {
+
+  confirm.remove()
+
+  // congress.forEach(member => {
+
+    h1.innerText = 'Compose your letter'
 
     const letter = document.createElement('textarea')
 
-    letter.value = `Dear ${congress[i]},`
-
-    // // // ${member.name}\n${member.address['line_1']}\n${member.address['city']}, ${member.address['state']} ${member.address['zip']}\n\n
+  letter.value = `${congress.address.line_1}\n${congress.address.city}, ${congress.address.state} ${congress.address.zip}\n\nDear ${congress.name},`
 
     const email = document.createElement('button')
     const copy = document.createElement('button')
@@ -168,7 +178,6 @@ function whichButton(congress) {
     back.innerText = 'BACK'
 
     copy.addEventListener('click', function copyLetter() {
-
       letter.select()
       document.execCommand('copy')
       alert('Copied!')
@@ -179,5 +188,11 @@ function whichButton(congress) {
     compose.append(email)
     compose.append(copy)
 
-    }
-  
+  // })
+}
+
+//     const h4 = document.createElement('h4')
+//     h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
+//     footer.append(h4)
+//   }
+//   
