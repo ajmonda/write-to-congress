@@ -29,6 +29,7 @@ form.addEventListener('submit', async (e) => {
 
   const url = getURL(e)
   const congress = await getCongress(url)
+  console.log(congress)
   form.remove()
   showCongress(congress)
 
@@ -107,6 +108,7 @@ function showCongress(congress) {
 
     const contactButton = document.createElement('button')
     contactButton.innerText = 'CONTACT'
+    contactButton.id = `${member['name']}`
 
     repInfo.append(contactButton)
 
@@ -122,8 +124,9 @@ function showCongress(congress) {
       }
       return name
     }
-
-    contactButton.addEventListener('click', (e) => {
+    
+    const contactRep = document.getElementById(`${congress[0].name}`)
+    contactRep.addEventListener('click', (e) => {
 
       e.preventDefault()
       confirm.remove()
@@ -131,18 +134,21 @@ function showCongress(congress) {
 
     })
 
+    // if(document.getElementById('button').clicked == true)
+// { writeLetter(pass correspomding member here)
+
   });
 }
 
 function writeLetter(congress) {
 
-  congress.forEach(member => {
+  // congress.forEach(member => {
 
     h1.innerText = 'Compose your letter'
 
     const letter = document.createElement('textarea')
 
-    letter.value = `${member.name}\n${member.address['line_1']}\n${member.address['city']}, ${member.address['state']} ${member.address['zip']}\n\nDear ${member.name},`
+    letter.value = `${congress[0].name}\n${congress[0].address['line_1']}\n${congress[0].address['city']}, ${congress[0].address['state']} ${congress[0].address['zip']}\n\nDear ${congress[0].name},`
 
     const email = document.createElement('button')
     const copy = document.createElement('button')
@@ -157,7 +163,7 @@ function writeLetter(congress) {
       document.execCommand('copy')
       alert('Copied!')
 
-    })
+    // })
 
     compose.append(letter)
     compose.append(email)
