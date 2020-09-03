@@ -1,16 +1,5 @@
 // https://docs.opencivicdata.org/en/latest/proposals/0002.html
 
-// divisions.(key).officeIndices[] // (array) List of indices in the 'offices' array, one for each office elected from this division.
-
-// offices[].name	// (string) The human-readable name of the office.
-
-// offices[].officialIndices // (array) List of indices in the 'officials' array of people who presently hold this office.
-
-// officials[] // here are thepeople
-// // officials[].name // (string) official's name
-// // officials[].emails // (array)	The direct email addresses for the official.
-// // officials[].address // (array of obj) snail mail
-
 const h1 = document.querySelector('h1')
 const footer = document.querySelector('footer')
 
@@ -22,7 +11,6 @@ const state = document.querySelector('#state')
 const confirm = document.getElementById('confirm')
 const repInfo = document.getElementById('rep-info')
 const senInfo = document.getElementById('sen-info')
-const compose = document.getElementById('compose')
 
 form.addEventListener('submit', async (e) => {
 
@@ -158,6 +146,7 @@ function whichButton(congress) {
 }
 
 function writeLetter(congress) {
+  const compose = document.getElementById('compose')
 
   confirm.remove()
 
@@ -167,30 +156,11 @@ function writeLetter(congress) {
 
   console.log(congress)
 
-  letter.value = `The Honorable ${congress.name}\n${congress.address[0].line1}\n${congress.address[0].city}, ${congress.address[0].state} ${congress.address[0].zip}\n\nDear ${congress.office}:`
+  letter.value = `${congress.address[0].line1}\n${congress.address[0].city}, ${congress.address[0].state} ${congress.address[0].zip}\n\nTo the Honorable ${congress.name}:`
 
   const copy = document.createElement('button')
-  const back = document.createElement('button')
-  const email = isEmail(congress)
 
   copy.innerText = 'COPY'
-  back.innerText = 'BACK'
-  email.innerText = 'EMAIL'
-
-  // until email button functional
-  email.style.opacity = '0.5'
-
-
-  // function isEmail(congress) {
-  //   const email = document.createElement('button')
-  //   if (congress.emails) {
-
-      
-  //   } else {
-  //     email.style.opacity = '0.5'
-  //   }
-  //   return email
-  // }
 
   copy.addEventListener('click', function copyLetter() {
     letter.select()
@@ -200,7 +170,6 @@ function writeLetter(congress) {
   })
 
   compose.append(letter)
-  compose.append(email)
   compose.append(copy)
 
   const h4 = document.createElement('h4')

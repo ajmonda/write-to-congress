@@ -54,7 +54,6 @@ h1 {
 input {
   opacity: .8;
   padding: 10px;
-  /* display: block; */
   margin: 15px auto;
   min-width: 80%;
   background-color: #e8eddf;
@@ -68,7 +67,6 @@ input {
 
 select {
   font-family: 'Montserrat', sans-serif;
-  /* display: block; */
   padding: 10px;
   margin: 15px auto;
   background-color:  #e8eddf;
@@ -90,7 +88,6 @@ select {
 button {
   font-family: 'Montserrat', sans-serif;
   padding: 10px;
-  /* display: block; */
   min-width: 80%;
   margin: 20px 0 10px 0;
   background-color: #db3a34;
@@ -132,7 +129,6 @@ footer.h3 {
 
 a {
   color: #db3a34;
-  /* text-decoration: none; */
 }
 
 a:hover {
