@@ -43,8 +43,6 @@ async function getCongress(url) {
     const response = await axios.get(url)
     const offices = response.data.offices
 
-    console.log(response.data)
-
     const indices = []
 
     for (let i = 0; i < offices.length; i++) {
@@ -74,10 +72,10 @@ async function getCongress(url) {
 
     return congress
 
-  } catch (err) {
-    console.log(`error: ${err}`)
+  } catch (e) {
+    window.alert("Please enter a valid address.")
   } finally {
-    console.log(`made it`)
+    console.log("Success")
   }
 }
 
@@ -172,7 +170,4 @@ function writeLetter(congress) {
   compose.append(letter)
   compose.append(copy)
 
-  const h4 = document.createElement('h4')
-  h4.innerHTML = 'To easily contact Kentucky justice officials in defense of Breonna Taylor\'s life, got to <a target="_blank" href="http://www.forbreonna.com">ForBreonna.com</a>.'
-  footer.append(h4)
 }
